@@ -21,7 +21,13 @@
 </template>
 
 <script setup lang="ts">
-  import { capitalizeFirstLetter } from "~/util/util";
+  import { provide } from "vue";
+
+  const userKey = getUserKey();
+
+  provide("userKey", userKey);
+
+  import { capitalizeFirstLetter, getUserKey, setUserKey } from "~/util/util";
   import { debounce } from "lodash";
 
   interface TipperResponse {
@@ -61,7 +67,7 @@
     try {
       //todo: implement userkey state
       const res = await fetch(
-        `https://wildlyle.dev:8020/lookupTippers?address=${data}&userKey=`
+        `https://wildlyle.dev:8020/lookupTippers?address=${data}&userKey=${userKey}`
       );
 
       const json = await res.json();
@@ -69,15 +75,13 @@
       resCount++;
 
       if (json) {
-        tipperArray.value = json.map(
-          (order: Record<string, any>, index: number) => {
-            return {
-              ...order,
-              address: capitalizeFirstLetter(order.address),
-              key: index + resCount * 10 + 1,
-            };
-          }
-        );
+        tipperArray.value = json.map((order: TipperResponse, index: number) => {
+          return {
+            ...order,
+            address: capitalizeFirstLetter(order.address),
+            key: index + resCount * 10 + 1,
+          };
+        });
       }
     } catch (err) {
       console.log(err);
