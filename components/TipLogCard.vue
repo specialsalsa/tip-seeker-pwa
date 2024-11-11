@@ -1,9 +1,9 @@
 <template>
   <v-card class="card">
-    <v-card-title class="title">{{ title }}</v-card-title>
-    <v-card-subtitle
-      >Average: {{ getTipRatingAverage(tipRatings) }}</v-card-subtitle
-    >
+    <v-card-title class="title" v-text="title"></v-card-title>
+    <v-card-subtitle>
+      Average: {{ getTipRatingAverage(tipRatings) }}
+    </v-card-subtitle>
   </v-card>
 </template>
 
@@ -22,14 +22,14 @@
   };
 </script>
 
-<style lang="scss">
+<style scoped>
   .card {
     min-height: 10rem;
     margin: 1rem 2rem;
   }
 
   .title {
-    font-size: 1rem;
-    text-wrap: wrap;
+    font-size: 1.2rem;
+    text-wrap: auto;
   }
 </style>

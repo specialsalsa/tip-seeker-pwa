@@ -25,10 +25,10 @@
     _id: string;
     id: string;
     address: string;
-    coordinates: any[];
+    coordinates: number | null[];
     tipRating: string[];
     __v: number;
-    note: any[];
+    note: string[];
     timestamp: number;
     key: number;
   }
@@ -81,8 +81,9 @@
   };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
   .title {
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     margin-top: 1rem;
