@@ -47,6 +47,8 @@
       return;
     }
 
+    // console.log(data);
+
     const throttledLookup = debounce(handleGetTippers, 150, {
       leading: true,
       trailing: false,
@@ -67,15 +69,15 @@
       resCount++;
 
       if (json) {
-        tipperArray.value = json
-          .map((order: Record<string, any>, index: number) => {
+        tipperArray.value = json.map(
+          (order: Record<string, any>, index: number) => {
             return {
               ...order,
               address: capitalizeFirstLetter(order.address),
               key: index + resCount * 10 + 1,
             };
-          })
-          .reverse();
+          }
+        );
       }
     } catch (err) {
       console.log(err);
