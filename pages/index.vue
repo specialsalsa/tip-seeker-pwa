@@ -6,6 +6,9 @@
     class="address"
     v-model="formData"
     variant="solo"
+    elevation="5"
+    :autofocus="true"
+    rounded="lg"
     @input="handleInput($event.target.value)"
   >
   </v-text-field>
@@ -14,7 +17,7 @@
     v-for="value in tipperArray"
     :title="value && value.address"
     :tip-ratings="value && value.tipRating"
-  ></TipLogCard>
+  />
 </template>
 
 <script setup lang="ts">
@@ -74,7 +77,6 @@
           })
           .reverse();
       }
-      console.log(json.value);
     } catch (err) {
       console.log(err);
     }
@@ -87,11 +89,11 @@
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
   }
 
   .address {
-    margin: 1em 2em;
+    margin: 3rem 2rem;
     max-height: 1.5em;
   }
 </style>

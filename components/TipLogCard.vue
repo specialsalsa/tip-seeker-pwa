@@ -1,5 +1,5 @@
 <template>
-  <v-card class="card">
+  <v-card class="card" elevation="3" rounded="lg">
     <v-card-title class="title" v-text="title"></v-card-title>
     <v-card-subtitle>
       Average: {{ getTipRatingAverage(tipRatings) }}
@@ -24,8 +24,9 @@
 
 <style scoped>
   .card {
-    min-height: 10rem;
-    margin: 1rem 2rem;
+    min-height: 5rem;
+    margin: 1rem 1rem;
+    padding-bottom: 2rem;
   }
 
   .title {

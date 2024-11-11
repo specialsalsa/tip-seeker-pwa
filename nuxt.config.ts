@@ -5,7 +5,11 @@ export default defineNuxtConfig({
   modules: ["vuetify-nuxt-module", "@vite-pwa/nuxt"],
   vuetify: {
     moduleOptions: {},
-    vuetifyOptions: {},
+    vuetifyOptions: {
+      theme: {
+        defaultTheme: "dark",
+      },
+    },
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
