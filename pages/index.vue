@@ -13,6 +13,7 @@
   <TipLogCard
     v-for="value in tipperArray"
     :title="value && value.address"
+    :tip-ratings="value && value.tipRating"
   ></TipLogCard>
 </template>
 
@@ -25,6 +26,7 @@
     id: string;
     address: string;
     coordinates: any[];
+    tipRating: string[];
     __v: number;
     note: any[];
     timestamp: number;
@@ -72,6 +74,7 @@
           })
           .reverse();
       }
+      console.log(json.value);
     } catch (err) {
       console.log(err);
     }
