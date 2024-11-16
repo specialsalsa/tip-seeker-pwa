@@ -1,8 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { aliases, mdi } from "vuetify/iconsets/mdi";
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["vuetify-nuxt-module", "@vite-pwa/nuxt"],
+  modules: ["vuetify-nuxt-module", "@vite-pwa/nuxt", "@pinia/nuxt"],
   vuetify: {
     moduleOptions: {},
     vuetifyOptions: {

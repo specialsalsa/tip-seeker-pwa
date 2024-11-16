@@ -211,6 +211,16 @@ function replaceStateAbbreviation(address: string) {
   return address.replace(stateRegex, (match) => states[match.toLowerCase()]);
 }
 
+export const handleStarRating = (rating: number, low: number, high: number) => {
+  if (rating < low) {
+    return "mdi-star-outline";
+  } else if (rating >= low && rating < high) {
+    return "mdi-star-half-full";
+  } else if (rating >= high) {
+    return "mdi-star";
+  }
+};
+
 function replaceLastStateAbbreviation(address: string) {
   // List of state abbreviations
 
