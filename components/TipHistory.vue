@@ -25,7 +25,7 @@
 
   .card {
     padding-bottom: 2rem;
-    margin: 1rem 1rem;
+    margin: 1rem 1rem 5rem 1rem;
   }
 
   @media (min-width: 1280px) {

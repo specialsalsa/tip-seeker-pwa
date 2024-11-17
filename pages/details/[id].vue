@@ -3,8 +3,8 @@
     :title="tipperData.address"
     :tip-ratings="tipperData.tipRatings"
   />
-  <TipHistory />
   <Notes />
+  <TipHistory />
 </template>
 
 <script setup lang="ts">
