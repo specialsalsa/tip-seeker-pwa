@@ -4,8 +4,10 @@
     <div class="notesContainer" v-for="(note, index) in state.notes">
       <v-form @submit.prevent="submitNoteChange(index)">
         <v-text-field
+          class="text-field"
+          density="compact"
           focused
-          min-width="60vw"
+          min-width="75vw"
           v-model="noteText"
           label="Edit note..."
           variant="outlined"
@@ -38,6 +40,7 @@
   };
 
   const submitNoteChange = (index: number): any => {
+    //todo: create action in store for real saving
     state.notes[index] = noteText.value;
     noteIndex.value = null;
     noteText.value = "";
