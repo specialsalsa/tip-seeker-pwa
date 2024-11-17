@@ -24,7 +24,15 @@
     {
       "name": "Attach",
       "type": "firefox",
-      "request": "attach"
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "request": "attach",
+      "pathMappings": [
+        {
+          "url": "http://localhost:3000/_nuxt/components",
+          "path": "${workspaceFolder}/components"
+        }
+      ]
     },
     {
       "name": "Launch WebExtension",

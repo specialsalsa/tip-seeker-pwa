@@ -3,9 +3,12 @@
     :title="tipperData.address"
     :tip-ratings="tipperData.tipRatings"
   />
+  <TipHistory />
+  <Notes />
 </template>
 
 <script setup lang="ts">
+  import Notes from "~/components/Notes.vue";
   import { useUserStore } from "~/store/store";
 
   const tipperData = useUserStore();

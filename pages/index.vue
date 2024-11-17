@@ -17,6 +17,7 @@
     v-for="value in tipperArray"
     :title="value && value.address"
     :tip-ratings="value && value.tipRating"
+    :notes="value && value.note"
   />
 </template>
 

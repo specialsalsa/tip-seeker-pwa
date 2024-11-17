@@ -20,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-  import type { TipperData } from "~/types";
   import { handleStarRating } from "~/util/util";
   import { useUserStore } from "~/store/store";
 
@@ -29,6 +28,7 @@
   const props = defineProps<{
     title?: string;
     tipRatings?: string[];
+    notes?: string[];
   }>();
 
   const getTipRatingAverage = (ratingArr: string[]): number => {
@@ -46,7 +46,11 @@
   const average = computed(() => getTipRatingAverage(props.tipRatings || []));
 
   const setTipperData = () => {
-    state.addCurrentUser(props.title as string, props.tipRatings as string[]);
+    state.addCurrentUser(
+      props.title as string,
+      props.tipRatings as string[],
+      props.notes as string[]
+    );
   };
 </script>
 
