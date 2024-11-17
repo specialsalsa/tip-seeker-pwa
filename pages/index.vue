@@ -4,7 +4,7 @@
   <v-text-field
     label="Address"
     class="address"
-    v-model="formData"
+    v-model="store.formData"
     variant="solo"
     elevation="5"
     :autofocus="true"
@@ -23,13 +23,19 @@
 
 <script setup lang="ts">
   import { provide } from "vue";
+  import { capitalizeFirstLetter, getUserKey, setUserKey } from "~/util/util";
+  import { debounce } from "lodash";
+  import { useUserStore } from "~/store/store";
+
+  const store = useUserStore();
 
   const userKey = getUserKey();
 
   provide("userKey", userKey);
 
-  import { capitalizeFirstLetter, getUserKey, setUserKey } from "~/util/util";
-  import { debounce } from "lodash";
+  onMounted(() => {
+    handleInput(store.formData);
+  });
 
   interface TipperResponse {
     _id: string;
@@ -44,7 +50,6 @@
   }
 
   let resCount = 0;
-  const formData = ref("");
 
   const tipperArray = ref([] as Partial<TipperResponse[]>);
 
@@ -54,6 +59,8 @@
       return;
     }
 
+    store.formData = data;
+
     // console.log(data);
 
     const throttledLookup = debounce(handleGetTippers, 150, {
@@ -61,7 +68,7 @@
       trailing: false,
     });
 
-    throttledLookup(data);
+    throttledLookup(store.formData);
   }
 
   const handleGetTippers = async (data: string) => {

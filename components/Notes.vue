@@ -1,8 +1,8 @@
 <template>
   <v-card elevation="3" class="card" rounded="lg">
     <v-card-title>Notes</v-card-title>
-    <div class="notesContainer" v-for="(note, index) in state.notes">
-      <div class="noteEditContainer">
+    <div class="notes-container" v-for="(note, index) in state.notes">
+      <div class="note-edit-container">
         <v-form @submit.prevent="submitNoteChange(index)">
           <v-text-field
             class="text-field"
@@ -55,22 +55,27 @@
     padding: 0rem 1rem 2rem 0rem;
   }
 
+  .text-field {
+    margin: 0;
+  }
+
   .note {
     margin-bottom: 0.5rem;
   }
 
-  .notesContainer {
+  .notes-container {
     display: flex;
     justify-content: space-between;
   }
 
-  .noteEditContainer {
+  .note-edit-container {
     display: flex;
     max-width: 80vw;
+    margin: 0;
   }
 
   @media (min-width: 1280px) {
-    .noteEditContainer {
+    .note-edit-container {
       max-width: 30vw;
     }
   }

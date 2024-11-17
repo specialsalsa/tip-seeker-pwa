@@ -5,6 +5,7 @@ export const useUserStore = defineStore("user", {
     address: "",
     tipRatings: [] as string[],
     notes: [] as string[],
+    formData: "",
   }),
   actions: {
     addCurrentUser(address: string, tipRatings: string[], notes: string[]) {
