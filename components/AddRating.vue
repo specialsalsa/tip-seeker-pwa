@@ -1,4 +1,18 @@
 <template>
+  <v-overlay v-model="modalOpen"></v-overlay>
+  <v-dialog v-model="modalOpen" class="dialog">
+    <v-card class="card" rounded="xl" density="compact">
+      <v-card-text
+        >Please wait {{ Math.ceil(timeRemaining) }} minute{{
+          timeRemaining < 1 ? "" : "s"
+        }}
+        to add another rating.</v-card-text
+      >
+      <v-card-actions>
+        <v-btn @click="closeModal" size="default">Close</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
   <v-card class="card">
     <v-card-title>Add Rating</v-card-title>
     <div class="star-container">
@@ -19,6 +33,9 @@
 
   const user = useUserStore();
   const rating = ref(0);
+  const rateLimited = ref(false);
+  const modalOpen = ref(false);
+  const timeRemaining = ref(0);
 
   const handleStarRating = (rating: number, target: number): string => {
     if (rating < target) {
@@ -40,15 +57,27 @@
 
     const json = await res.json();
 
+    if (json.rateLimit) {
+      rateLimited.value = true;
+      modalOpen.value = true;
+      timeRemaining.value = json.timeRemaining;
+    }
+
     user.tipRatings.push(rating.toString());
   };
+
+  const closeModal = () => (modalOpen.value = false);
 </script>
 
 <style scoped>
   .card {
     min-height: 10rem;
     margin: 1rem 1rem;
-    padding: 0 1rem 2rem 0;
+    padding: 0 1rem 1rem 0;
+  }
+
+  .dialong {
+    margin: 0;
   }
 
   .star-container,
