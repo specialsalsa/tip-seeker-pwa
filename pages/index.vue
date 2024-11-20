@@ -1,17 +1,26 @@
 <template>
   <h1 class="title">Tipper Lookup</h1>
 
-  <v-text-field
-    label="Address"
-    class="address"
-    v-model="store.formData"
-    variant="solo"
-    elevation="5"
-    :autofocus="true"
-    rounded="lg"
-    @input="handleInput($event.target.value)"
-  >
-  </v-text-field>
+  <div class="text-field-container">
+    <v-text-field
+      label="Address"
+      class="address"
+      v-model="store.formData"
+      autofocus
+      variant="solo"
+      elevation="5"
+      rounded="lg"
+      @input="handleInput($event.target.value)"
+    >
+    </v-text-field>
+    <v-icon
+      v-if="store.formData"
+      icon="mdi-close-circle-outline"
+      class="clear-icon"
+      size="large"
+      @click="clearInput()"
+    ></v-icon>
+  </div>
 
   <TipLogCard
     v-for="value in tipperArray"
@@ -26,6 +35,7 @@
   import { capitalizeFirstLetter, getUserKey, setUserKey } from "~/util/util";
   import { debounce } from "lodash";
   import { useUserStore } from "~/store/store";
+  import type { TipperResponse } from "~/types";
 
   const store = useUserStore();
 
@@ -36,18 +46,6 @@
   onMounted(() => {
     handleInput(store.formData);
   });
-
-  interface TipperResponse {
-    _id: string;
-    id: string;
-    address: string;
-    coordinates: number | null[];
-    tipRating: string[];
-    __v: number;
-    note: string[];
-    timestamp: number;
-    key: number;
-  }
 
   let resCount = 0;
 
@@ -61,8 +59,6 @@
 
     store.formData = data;
 
-    // console.log(data);
-
     const throttledLookup = debounce(handleGetTippers, 150, {
       leading: true,
       trailing: false,
@@ -71,9 +67,13 @@
     throttledLookup(store.formData);
   }
 
+  function clearInput(): void {
+    store.formData = "";
+    tipperArray.value = [];
+  }
+
   const handleGetTippers = async (data: string) => {
     try {
-      //todo: implement userkey state
       const res = await fetch(
         `https://wildlyle.dev:8020/lookupTippers?address=${data}&userKey=${userKey}`
       );
@@ -109,5 +109,15 @@
   .address {
     margin: 3rem 2rem;
     max-height: 1.5em;
+  }
+
+  .text-field-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .clear-icon {
+    margin-top: 2rem;
+    margin-right: 2rem;
   }
 </style>
