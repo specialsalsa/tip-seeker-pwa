@@ -4,6 +4,7 @@
       :title="tipperData.address"
       :tip-ratings="tipperData.tipRatings"
     />
+    <AddRating />
     <Notes />
     <TipHistory />
     <v-container class="button-container">
@@ -15,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+  import AddRating from "~/components/AddRating.vue";
   import Notes from "~/components/Notes.vue";
   import { useUserStore } from "~/store/store";
 
