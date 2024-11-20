@@ -6,8 +6,8 @@
         >Please wait {{ Math.ceil(timeRemaining) }} minute{{
           timeRemaining < 1 ? "" : "s"
         }}
-        to add another rating.</v-card-text
-      >
+        to add another rating.
+      </v-card-text>
       <v-card-actions>
         <v-btn @click="closeModal" size="default">Close</v-btn>
       </v-card-actions>
@@ -23,7 +23,9 @@
       ></v-icon>
     </div>
     <div class="rating-button-container">
-      <v-btn @click="submitRating(rating)">Submit Rating</v-btn>
+      <v-btn color="grey-darken-3" @click="submitRating(rating)"
+        >Submit Rating</v-btn
+      >
     </div>
   </v-card>
 </template>
@@ -80,9 +82,14 @@
     margin: 0;
   }
 
-  .star-container,
+  .star-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
   .rating-button-container {
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
     display: flex;
     justify-content: center;
   }

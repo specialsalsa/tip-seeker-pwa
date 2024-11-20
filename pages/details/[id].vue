@@ -8,7 +8,11 @@
     <Notes />
     <TipHistory />
     <v-container class="button-container">
-      <v-btn prepend-icon="mdi-map-marker" :href="mapsLink" class="maps-button"
+      <v-btn
+        color="grey-darken-3"
+        prepend-icon="mdi-map-marker"
+        :href="mapsLink"
+        class="maps-button"
         >Google Maps link
       </v-btn>
     </v-container>
