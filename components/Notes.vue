@@ -8,7 +8,7 @@
             class="text-field"
             density="compact"
             focused
-            min-width="75vw"
+            min-width="65vw"
             v-model="noteText"
             label="Edit note..."
             variant="outlined"
@@ -20,7 +20,22 @@
       <p :id="'note-' + index" v-bind:hidden="noteIndex === index" class="note">
         {{ note }}
       </p>
-      <v-icon icon="mdi-pencil" size="md" @click="editNote(index)"></v-icon>
+      <div class="note-icon-container">
+        <v-icon
+          v-if="state.notes[index]"
+          class="button"
+          icon="mdi-pencil"
+          size="md"
+          @click="editNote(index)"
+        ></v-icon>
+        <v-icon
+          v-if="state.notes[index]"
+          class="button"
+          icon="mdi-close-circle-outline"
+          size="md"
+          @click="deleteNote(index)"
+        ></v-icon>
+      </div>
     </div>
   </v-card>
 </template>
@@ -46,6 +61,13 @@
     noteIndex.value = null;
     noteText.value = "";
   };
+
+  const deleteNote = (index: number): void => {
+    //todo: create action in store for real saving
+    delete state.notes[index];
+    noteIndex.value = null;
+    noteText.value = "";
+  };
 </script>
 
 <style scoped>
@@ -57,10 +79,12 @@
 
   .text-field {
     margin: 0;
+    max-width: 50vw;
   }
 
   .note {
     margin-bottom: 0.5rem;
+    margin-left: 3rem;
   }
 
   .notes-container {
@@ -68,10 +92,19 @@
     justify-content: space-between;
   }
 
+  .note-icon-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .note-edit-container {
     display: flex;
     max-width: 80vw;
     margin: 0;
+  }
+
+  .button {
+    margin: 0 0.5rem;
   }
 
   @media (min-width: 1280px) {
