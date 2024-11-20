@@ -78,5 +78,8 @@
     .note-edit-container {
       max-width: 30vw;
     }
+    .card {
+      margin: 1rem 20rem;
+    }
   }
 </style>

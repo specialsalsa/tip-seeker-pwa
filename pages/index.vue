@@ -1,33 +1,35 @@
 <template>
-  <h1 class="title">Tipper Lookup</h1>
+  <div class="scroll-container">
+    <h1 class="title">Tipper Lookup</h1>
 
-  <div class="text-field-container">
-    <v-text-field
-      label="Address"
-      class="address"
-      v-model="store.formData"
-      autofocus
-      variant="solo"
-      elevation="5"
-      rounded="lg"
-      @input="handleInput($event.target.value)"
-    >
-    </v-text-field>
-    <v-icon
-      v-if="store.formData"
-      icon="mdi-close-circle-outline"
-      class="clear-icon"
-      size="large"
-      @click="clearInput()"
-    ></v-icon>
+    <div class="text-field-container">
+      <v-text-field
+        label="Address"
+        class="address"
+        v-model="store.formData"
+        autofocus
+        variant="solo"
+        elevation="5"
+        rounded="lg"
+        @input="handleInput($event.target.value)"
+      >
+      </v-text-field>
+      <v-icon
+        v-if="store.formData"
+        icon="mdi-close-circle-outline"
+        class="clear-icon"
+        size="large"
+        @click="clearInput()"
+      ></v-icon>
+    </div>
+
+    <TipLogCard
+      v-for="value in tipperArray"
+      :title="value && value.address"
+      :tip-ratings="value && value.tipRating"
+      :notes="value && value.note"
+    />
   </div>
-
-  <TipLogCard
-    v-for="value in tipperArray"
-    :title="value && value.address"
-    :tip-ratings="value && value.tipRating"
-    :notes="value && value.note"
-  />
 </template>
 
 <script setup lang="ts">
@@ -119,5 +121,14 @@
   .clear-icon {
     margin-top: 2rem;
     margin-right: 2rem;
+  }
+
+  .scroll-container {
+    overflow-y: auto;
+    height: 85vh;
+  }
+
+  .content {
+    padding: 16px;
   }
 </style>

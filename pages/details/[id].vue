@@ -1,15 +1,17 @@
 <template>
-  <TipLogCard
-    :title="tipperData.address"
-    :tip-ratings="tipperData.tipRatings"
-  />
-  <Notes />
-  <TipHistory />
-  <v-container class="button-container">
-    <v-btn prepend-icon="mdi-map-marker" :href="mapsLink" class="maps-button"
-      >Google Maps link
-    </v-btn>
-  </v-container>
+  <div class="scroll-container">
+    <TipLogCard
+      :title="tipperData.address"
+      :tip-ratings="tipperData.tipRatings"
+    />
+    <Notes />
+    <TipHistory />
+    <v-container class="button-container">
+      <v-btn prepend-icon="mdi-map-marker" :href="mapsLink" class="maps-button"
+        >Google Maps link
+      </v-btn>
+    </v-container>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -30,5 +32,10 @@
   .button-container {
     display: flex;
     justify-content: center;
+  }
+
+  .scroll-container {
+    overflow-y: auto;
+    height: 85vh;
   }
 </style>
