@@ -127,8 +127,4 @@
     overflow-y: auto;
     height: 85vh;
   }
-
-  .content {
-    padding: 16px;
-  }
 </style>
