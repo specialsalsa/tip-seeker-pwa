@@ -1,7 +1,7 @@
 <template>
   <v-overlay v-model="modalOpen"></v-overlay>
   <v-dialog v-model="modalOpen" class="dialog">
-    <v-card class="card" rounded="xl" density="compact">
+    <v-card class="card" rounded="lg" density="compact">
       <v-card-text
         >Please wait {{ Math.ceil(timeRemaining) }} minute{{
           timeRemaining < 1 ? "" : "s"
@@ -13,7 +13,7 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <v-card class="card">
+  <v-card class="card" rounded="lg" elevation="2">
     <v-card-title>Add Rating</v-card-title>
     <div class="star-container">
       <v-icon

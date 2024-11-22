@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="3" class="card" rounded="lg">
+  <v-card elevation="2" class="card" rounded="lg">
     <v-card-title>Notes</v-card-title>
     <div class="notes-container" v-for="(note, index) in state.notes">
       <div class="note-edit-container">

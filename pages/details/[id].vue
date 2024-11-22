@@ -25,7 +25,6 @@
   import { useUserStore } from "~/store/store";
 
   const tipperData = useUserStore();
-
   const mapsLink = `geo:0,0?q=${tipperData.address}`;
 </script>
 

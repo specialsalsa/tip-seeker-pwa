@@ -9,7 +9,7 @@
         v-model="store.formData"
         autofocus
         variant="solo"
-        elevation="5"
+        elevation="3"
         rounded="lg"
         @input="handleInput($event.target.value)"
       >
