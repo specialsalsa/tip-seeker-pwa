@@ -7,7 +7,7 @@
         label="Address"
         class="address"
         v-model="store.formData"
-        autofocus
+        ref="textInputRef"
         variant="solo"
         elevation="3"
         rounded="lg"
@@ -42,6 +42,8 @@
   const store = useUserStore();
 
   const userKey = getUserKey();
+
+  const textInputRef = ref();
 
   provide("userKey", userKey);
 
