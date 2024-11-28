@@ -55,12 +55,6 @@
 </script>
 
 <style scoped>
-  .card {
-    min-height: 5rem;
-    margin: 1rem 25rem;
-    padding-bottom: 2rem;
-  }
-
   .title {
     font-size: 1.1rem;
     text-wrap: auto;
@@ -72,11 +66,5 @@
 
   a {
     text-decoration: none;
-  }
-
-  @media (max-width: 1280px) {
-    .card {
-      margin: 1rem 1rem;
-    }
   }
 </style>

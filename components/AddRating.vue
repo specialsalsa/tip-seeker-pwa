@@ -72,19 +72,7 @@
 </script>
 
 <style scoped>
-  .card {
-    min-height: 10rem;
-    margin: 1rem 1rem;
-    padding: 0 1rem 1rem 0;
-  }
-
-  @media (min-width: 1280px) {
-    .card {
-      margin: 1rem 20rem;
-    }
-  }
-
-  .dialong {
+  .dialog {
     margin: 0;
   }
 

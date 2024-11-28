@@ -22,15 +22,4 @@
     display: flex;
     justify-content: center;
   }
-
-  .card {
-    padding-bottom: 2rem;
-    margin: 1rem 1rem 1rem 1rem;
-  }
-
-  @media (min-width: 1280px) {
-    .card {
-      margin: 1rem 20rem;
-    }
-  }
 </style>

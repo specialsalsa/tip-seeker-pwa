@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  css: ["~/global-styles.css"],
   ssr: false,
   modules: ["vuetify-nuxt-module", "@vite-pwa/nuxt", "@pinia/nuxt"],
   pwa: {

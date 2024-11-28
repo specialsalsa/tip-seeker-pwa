@@ -71,12 +71,6 @@
 </script>
 
 <style scoped>
-  .card {
-    min-height: 5rem;
-    margin: 1rem 1rem;
-    padding: 0rem 1rem 2rem 0rem;
-  }
-
   .text-field {
     margin: 0;
     max-width: 50vw;
@@ -110,9 +104,6 @@
   @media (min-width: 1280px) {
     .note-edit-container {
       max-width: 30vw;
-    }
-    .card {
-      margin: 1rem 20rem;
     }
   }
 </style>
