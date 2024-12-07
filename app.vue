@@ -6,8 +6,8 @@
     updateTheme();
     watchThemeChange();
   });
+  // comment for nothin
 </script>
-
 <template>
   <VitePwaManifest />
   <div>
