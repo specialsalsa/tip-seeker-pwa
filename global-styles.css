@@ -6,7 +6,7 @@
 
 .scroll-container {
   overflow-y: auto;
-  height: 85vh;
+  height: 93vh;
 }
 
 @media (min-width: 1280px) {
