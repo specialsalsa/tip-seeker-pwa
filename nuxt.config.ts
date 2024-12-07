@@ -45,7 +45,7 @@ export default defineNuxtConfig({
         {
           src: "web-app-manifest-512x512.png",
           sizes: "512x512",
-          purpose: ["any", "maskable"],
+          purpose: ["any"],
         },
         {
           src: "favicon.ico",
