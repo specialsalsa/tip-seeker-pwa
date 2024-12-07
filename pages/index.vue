@@ -25,19 +25,19 @@
 
     <TipLogCard
       v-for="value in tipperArray"
-      :title="value && value.address"
-      :tip-ratings="value && value.tipRating"
-      :notes="value && value.note"
+      :title="value.address"
+      :tip-ratings="value.tipRating"
+      :notes="value.note"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { provide } from "vue";
-  import { capitalizeFirstLetter, getUserKey, setUserKey } from "~/util/util";
+  import { getUserKey } from "~/util/util";
   import { debounce } from "lodash";
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
+  import { useGetTippers } from "~/composables/useGetTippers";
 
   const store = useUserStore();
 
@@ -45,7 +45,7 @@
 
   const textInputRef = ref();
 
-  provide("userKey", userKey);
+  store.setUserKey(userKey as string);
 
   onMounted(() => {
     handleInput(store.formData);
@@ -53,9 +53,9 @@
 
   let resCount = 0;
 
-  const tipperArray = ref([] as Partial<TipperResponse[]>);
+  const tipperArray = ref<TipperResponse[]>([]);
 
-  function handleInput(data: string) {
+  async function handleInput(data: string) {
     if (!data) {
       tipperArray.value = [];
       return;
@@ -63,42 +63,22 @@
 
     store.formData = data;
 
-    const throttledLookup = debounce(handleGetTippers, 150, {
+    const throttledLookup = debounce(useGetTippers, 150, {
       leading: true,
       trailing: false,
     });
 
-    throttledLookup(store.formData);
+    try {
+      tipperArray.value = await throttledLookup(store.formData, resCount);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function clearInput(): void {
     store.formData = "";
     tipperArray.value = [];
   }
-
-  const handleGetTippers = async (data: string) => {
-    try {
-      const res = await fetch(
-        `https://wildlyle.dev:8020/lookupTippers?address=${data}&userKey=${userKey}`
-      );
-
-      const json = await res.json();
-
-      resCount++;
-
-      if (json) {
-        tipperArray.value = json.map((order: TipperResponse, index: number) => {
-          return {
-            ...order,
-            address: capitalizeFirstLetter(order.address),
-            key: index + resCount * 10 + 1,
-          };
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
 </script>
 
 <style scoped>
@@ -123,10 +103,5 @@
   .clear-icon {
     margin-top: 2rem;
     margin-right: 2rem;
-  }
-
-  .scroll-container {
-    overflow-y: auto;
-    height: 85vh;
   }
 </style>

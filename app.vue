@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <NuxtPwaManifest />
+  <VitePwaManifest />
   <div>
     <v-app>
       <NuxtPage page-key="index" />

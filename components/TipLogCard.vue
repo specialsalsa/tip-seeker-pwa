@@ -26,9 +26,9 @@
   const state = useUserStore();
 
   const props = defineProps<{
-    title?: string;
-    tipRatings?: string[];
-    notes?: string[];
+    title: string;
+    tipRatings: string[];
+    notes: string[];
   }>();
 
   const getTipRatingAverage = (ratingArr: string[]): number => {
@@ -46,11 +46,7 @@
   const average = computed(() => getTipRatingAverage(props.tipRatings || []));
 
   const setTipperData = () => {
-    state.addCurrentUser(
-      props.title as string,
-      props.tipRatings as string[],
-      props.notes as string[]
-    );
+    state.addCurrentUser(String(props.title), props.tipRatings!, props.notes!);
   };
 </script>
 

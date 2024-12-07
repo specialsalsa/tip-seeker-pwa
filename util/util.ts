@@ -261,7 +261,7 @@ export const setUserKey = () => {
 
 export const getUserKey = () => {
   try {
-    const userKey = localStorage.getItem("user_key");
+    const userKey: string | undefined | null = localStorage.getItem("user_key");
     if (userKey !== null) {
       console.log("Key already stored");
     } else {
