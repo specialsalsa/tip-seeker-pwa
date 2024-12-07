@@ -38,12 +38,12 @@ export default defineNuxtConfig({
       background_color: "#000000",
       icons: [
         {
-          src: "/public/web-app-manifest 192x192.png",
+          src: "/public/web-app-manifest-192x192.png",
           sizes: "192x192, 32x32, 64x64",
           purpose: ["any", "maskable"],
         },
         {
-          src: "/public/web-app-manifest 512x512.png",
+          src: "/public/web-app-manifest-512x512.png",
           sizes: "512x512",
           purpose: ["any", "maskable"],
         },
