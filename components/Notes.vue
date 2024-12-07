@@ -8,7 +8,7 @@
             class="text-field"
             density="compact"
             focused
-            min-width="65vw"
+            min-width="40vw"
             v-model="noteText"
             label="Edit note..."
             variant="outlined"
@@ -16,10 +16,12 @@
           ></v-text-field>
         </v-form>
       </div>
-      <!-- <v-text-field label="Label"></v-text-field> -->
-      <p :id="'note-' + index" v-bind:hidden="noteIndex === index" class="note">
-        {{ note }}
-      </p>
+      <div class="note-text-container" v-if="noteIndex !== index">
+        <!-- <v-text-field label="Label"></v-text-field> -->
+        <p :id="'note-' + index" class="note">
+          {{ note }}
+        </p>
+      </div>
       <div class="note-icon-container">
         <v-icon
           v-if="state.notes[index]"
@@ -86,15 +88,24 @@
     justify-content: space-between;
   }
 
+  .note-text-container {
+    min-width: 50vw;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.5vh;
+  }
+
   .note-icon-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-bottom: 1.5vh;
   }
 
   .note-edit-container {
     display: flex;
     max-width: 80vw;
-    margin: 0;
+    margin-left: 20vw;
   }
 
   .button {

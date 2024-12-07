@@ -274,6 +274,30 @@ export const getUserKey = () => {
   }
 };
 
+export async function fetchCsrfCookie() {
+  try {
+    const response = await fetch("/csrf-token", {
+      method: "GET",
+      credentials: "include", // Include cookies in the request
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch CSRF token: ${response.statusText}`);
+    }
+
+    console.log("CSRF token cookie set successfully");
+  } catch (error) {
+    console.error("Error fetching CSRF cookie:", error);
+    throw error;
+  }
+}
+
+export function getCsrfTokenFromCookie() {
+  const cookies = document.cookie.split("; ");
+  const csrfCookie = cookies.find((cookie) => cookie.startsWith("csrf="));
+  return csrfCookie ? csrfCookie.split("=")[1] : null;
+}
+
 export function capitalizeFirstLetter(words: string) {
   if (!words) return;
   words = replaceLastStateAbbreviation(words);

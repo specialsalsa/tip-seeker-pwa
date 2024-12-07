@@ -28,7 +28,7 @@
   const props = defineProps<{
     title: string;
     tipRatings: string[];
-    notes: string[];
+    notes: string[] | undefined;
   }>();
 
   const getTipRatingAverage = (ratingArr: string[]): number => {

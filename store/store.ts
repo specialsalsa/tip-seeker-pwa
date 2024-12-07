@@ -7,6 +7,7 @@ export const useUserStore = defineStore("user", {
     notes: [] as string[],
     formData: "",
     userKey: "",
+    csrfToken: "",
   }),
   actions: {
     addCurrentUser(address: string, tipRatings: string[], notes: string[]) {

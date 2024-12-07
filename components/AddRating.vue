@@ -32,12 +32,14 @@
 
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
+  import { getCsrfTokenFromCookie } from "~/util/util";
 
   const user = useUserStore();
   const rating = ref(0);
   const rateLimited = ref(false);
   const modalOpen = ref(false);
   const timeRemaining = ref(0);
+  const csrfToken = getCsrfTokenFromCookie();
 
   const handleStarRating = (rating: number, target: number): string => {
     if (rating < target) {
@@ -54,6 +56,10 @@
       }&tipRating=${rating}&timestamp=${Date.now()}`,
       {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken!,
+        },
       }
     );
 

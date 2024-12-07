@@ -13,6 +13,8 @@
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
+  import { getCsrfTokenFromCookie } from "~/util/util";
+  const csrfToken = getCsrfTokenFromCookie();
   const store = useUserStore();
   const userKey = store.userKey;
   let page = 1;
@@ -21,7 +23,13 @@
   const getUserOrders = async (userKey: string): Promise<TipperResponse[]> => {
     try {
       const res = await fetch(
-        `https://wildlyle.dev:8020/getUserOrders?userKey=${userKey}&page=${page}`
+        `https://wildlyle.dev:8020/getUserOrders?userKey=${userKey}&page=${page}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken!,
+          },
+        }
       );
       const json = await res.json();
 
