@@ -39,7 +39,7 @@ export default defineNuxtConfig({
       icons: [
         {
           src: "web-app-manifest-192x192.png",
-          sizes: "192x192, 32x32, 64x64",
+          sizes: "192x192 32x32 64x64",
           purpose: ["any", "maskable"],
         },
         {
