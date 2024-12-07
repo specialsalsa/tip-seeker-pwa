@@ -49,7 +49,7 @@ export default defineNuxtConfig({
         },
         {
           src: "favicon.ico",
-          sizes: "32x32 64x64",
+          sizes: "32x32",
           purpose: ["any"],
         },
       ],
