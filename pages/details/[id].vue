@@ -3,6 +3,8 @@
     <TipLogCard
       :title="tipperData.address"
       :tip-ratings="tipperData.tipRatings"
+      :notes="tipperData.notes"
+      :is-on-details-page="true"
     />
     <AddRating />
     <Notes />

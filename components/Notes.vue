@@ -16,7 +16,7 @@
           ></v-text-field>
         </v-form>
       </div>
-      <div class="note-text-container" v-if="noteIndex !== index">
+      <div class="note-text-container" v-if="noteIndex !== index || !note">
         <!-- <v-text-field label="Label"></v-text-field> -->
         <p :id="'note-' + index" class="note">
           {{ note }}

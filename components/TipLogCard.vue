@@ -15,6 +15,11 @@
           :icon="handleStarRating(average, i + 0.3, i + 0.7)"
         />
       </div>
+      <div class="note-container" v-if="!isOnDetailsPage">
+        <div class="top-spacer"></div>
+        <p class="note-text" v-for="note in notes">{{ note }}</p>
+        <div class="bottom-spacer"></div>
+      </div>
     </v-card>
   </NuxtLink>
 </template>
@@ -29,6 +34,7 @@
     title: string;
     tipRatings: string[];
     notes: string[] | undefined;
+    isOnDetailsPage: boolean | undefined;
   }>();
 
   const getTipRatingAverage = (ratingArr: string[]): number => {
@@ -58,6 +64,19 @@
 
   .star-container {
     margin-left: 0.8em;
+  }
+
+  .note-text {
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .top-spacer {
+    margin-top: 1rem;
+  }
+
+  .bottom-spacer {
+    margin-bottom: 1rem;
   }
 
   a {
