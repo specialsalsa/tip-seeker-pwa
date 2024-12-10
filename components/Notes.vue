@@ -39,6 +39,27 @@
         ></v-icon>
       </div>
     </div>
+
+    <v-form @submit.prevent="submitNoteChange(state.notes.length)">
+      <v-text-field
+        class="text-field"
+        density="compact"
+        focused
+        min-width="40vw"
+        v-model="noteText"
+        label="Add note..."
+        variant="outlined"
+        v-if="newNoteActive"
+      ></v-text-field>
+    </v-form>
+    <div class="add-button-container">
+      <v-icon
+        class="new-note-plus"
+        icon="mdi-plus"
+        @click="addNote"
+        v-if="!newNoteActive"
+      ></v-icon>
+    </div>
   </v-card>
 </template>
 
@@ -49,6 +70,7 @@
   const noteIndex = ref();
 
   const noteText = ref("");
+  const newNoteActive = ref(false);
 
   const editNote = (index: number) => {
     const saveNoteIndex = (index: number): void => {
@@ -57,11 +79,18 @@
     saveNoteIndex(index);
   };
 
+  const addNote = () => {
+    newNoteActive.value = true;
+  };
+
   const submitNoteChange = (index: number): any => {
     //todo: create action in store for real saving
     state.notes[index] = noteText.value;
     noteIndex.value = null;
     noteText.value = "";
+    newNoteActive.value = false;
+
+    //todo: submit to database
   };
 
   const deleteNote = (index: number): void => {
@@ -106,6 +135,12 @@
     display: flex;
     max-width: 80vw;
     margin-left: 20vw;
+  }
+
+  .add-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
   }
 
   .button {
