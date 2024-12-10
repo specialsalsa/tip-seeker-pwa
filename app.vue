@@ -1,12 +1,12 @@
 <script setup lang="ts">
   import { useThemeSwitcher } from "./composables/useThemeSwitcher";
-  import { fetchCsrfCookie } from "./util/util";
+  // import { fetchCsrfCookie } from "./util/util";
   const { updateTheme, watchThemeChange } = useThemeSwitcher();
 
   onMounted(() => {
     updateTheme();
     watchThemeChange();
-    fetchCsrfCookie();
+    // fetchCsrfCookie();
   });
 </script>
 <template>
