@@ -1,14 +1,14 @@
 import { useUserStore } from "~/store/store";
 import type { TipperResponse } from "~/types";
 import { capitalizeFirstLetter } from "~/util/util";
-import { getCsrfTokenFromCookie } from "~/util/util";
+import { getCsrfTokenFromLocalStorage } from "~/util/util";
 
 export const useGetTippers = async (
   data: string,
   resCount: number
 ): Promise<TipperResponse[]> => {
   const store = useUserStore();
-  const csrfToken = getCsrfTokenFromCookie();
+  const csrfToken = getCsrfTokenFromLocalStorage();
 
   const userKey = store.userKey;
   try {

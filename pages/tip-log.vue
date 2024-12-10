@@ -14,8 +14,8 @@
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
-  import { getCsrfTokenFromCookie } from "~/util/util";
-  const csrfToken = getCsrfTokenFromCookie();
+  import { getCsrfTokenFromLocalStorage } from "~/util/util";
+  const csrfToken = getCsrfTokenFromLocalStorage();
   const store = useUserStore();
   const userKey = store.userKey;
   let page = 1;

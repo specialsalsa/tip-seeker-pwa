@@ -32,14 +32,14 @@
 
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
-  import { getCsrfTokenFromCookie } from "~/util/util";
+  import { getCsrfTokenFromLocalStorage } from "~/util/util";
 
   const user = useUserStore();
   const rating = ref(0);
   const rateLimited = ref(false);
   const modalOpen = ref(false);
   const timeRemaining = ref(0);
-  const csrfToken = getCsrfTokenFromCookie();
+  const csrfToken = getCsrfTokenFromLocalStorage();
 
   const handleStarRating = (rating: number, target: number): string => {
     if (rating < target) {

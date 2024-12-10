@@ -276,7 +276,7 @@ export const getUserKey = () => {
 
 export async function fetchCsrfCookie() {
   try {
-    const response = await fetch("/csrf-token", {
+    const response = await fetch("https://wildlyle.dev:8020/csrf-token", {
       method: "GET",
       credentials: "include", // Include cookies in the request
     });
@@ -284,6 +284,10 @@ export async function fetchCsrfCookie() {
     if (!response.ok) {
       throw new Error(`Failed to fetch CSRF token: ${response.statusText}`);
     }
+    const json = await response.json();
+
+    // document.cookie = `csrf=${json.csrfToken}`;
+    localStorage.setItem("csrfToken", json.csrfToken);
 
     console.log("CSRF token cookie set successfully");
   } catch (error) {
@@ -293,9 +297,15 @@ export async function fetchCsrfCookie() {
 }
 
 export function getCsrfTokenFromCookie() {
-  const cookies = document.cookie.split("; ");
-  const csrfCookie = cookies.find((cookie) => cookie.startsWith("csrf="));
+  const csrfCookie = document.cookie.slice(document.cookie.indexOf("="))[1];
+  console.log(document.cookie);
   return csrfCookie ? csrfCookie.split("=")[1] : null;
+}
+
+export function getCsrfTokenFromLocalStorage(): string | null {
+  const token = localStorage.getItem("csrfToken");
+  console.log(token);
+  return token;
 }
 
 export function capitalizeFirstLetter(words: string) {
