@@ -6,7 +6,7 @@
       :title="tipper.address"
       :tip-ratings="tipper.tipRating"
       :notes="tipper.note"
-      :is-on-details-page="false"
+      :hide-notes="false"
     />
   </div>
 </template>

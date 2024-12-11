@@ -72,7 +72,7 @@
   const noteText = ref("");
   const newNoteActive = ref(false);
 
-  const editNote = (index: number) => {
+  const editNote = (index: number): void => {
     const saveNoteIndex = (index: number): void => {
       noteIndex.value = index;
     };
@@ -83,7 +83,7 @@
     newNoteActive.value = true;
   };
 
-  const submitNoteChange = (index: number): any => {
+  const submitNoteChange = (index: number): void => {
     //todo: create action in store for real saving
     state.notes[index] = noteText.value;
     noteIndex.value = null;

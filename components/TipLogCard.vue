@@ -15,7 +15,7 @@
           :icon="handleStarRating(average, i + 0.3, i + 0.7)"
         />
       </div>
-      <div class="note-container" v-if="!isOnDetailsPage">
+      <div class="note-container" v-if="!hideNotes">
         <div class="top-spacer"></div>
         <p class="note-text" v-for="note in notes">{{ note }}</p>
         <div class="bottom-spacer"></div>
@@ -34,7 +34,7 @@
     title: string;
     tipRatings: string[];
     notes: string[] | undefined;
-    isOnDetailsPage: boolean | undefined;
+    hideNotes: boolean | undefined;
   }>();
 
   const getTipRatingAverage = (ratingArr: string[]): number => {

@@ -28,7 +28,7 @@
       :title="value.address"
       :tip-ratings="value.tipRating"
       :notes="value.note"
-      :is-on-details-page="false"
+      :hide-notes="false"
     />
   </div>
 </template>
