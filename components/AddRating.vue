@@ -82,6 +82,12 @@
     margin: 0;
   }
 
+  @media (min-width: 1280px) {
+    .dialog {
+      margin: 0 30vw;
+    }
+  }
+
   .star-container {
     margin-top: 1rem;
     display: flex;
