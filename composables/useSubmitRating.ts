@@ -22,7 +22,6 @@ export const useSubmitRating = async (
     modalOpen,
     timeRemaining
   );
-  debugger;
 
   const res = await fetch(
     `https://wildlyle.dev:8020/setTipData?address=${address}, ${city}, ${state}&tipRating=${rating}&timestamp=${Date.now()}`,

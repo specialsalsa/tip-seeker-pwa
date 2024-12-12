@@ -1,5 +1,13 @@
 <template>
   <h1 class="page-title">Add New Tipper</h1>
+  <v-dialog v-model="modalOpened" class="dialog">
+    <v-card class="card-modal" rounded="lg" density="compact">
+      <v-card-text>Successfully added rating! </v-card-text>
+      <v-card-actions>
+        <v-btn @click="closeModal" size="default">Close</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
   <v-container class="card">
     <v-form
       class="form"
@@ -12,7 +20,8 @@
           rateLimited,
           modalOpened,
           timeRemaining
-        )
+        );
+        openModal();
       "
     >
       <v-text-field
@@ -29,7 +38,7 @@
         <v-radio label="Good Tipper" value="4"></v-radio>
         <v-radio label="Great Tipper" value="5"></v-radio>
       </v-radio-group>
-      <v-btn type="submit">Submit</v-btn>
+      <v-btn type="submit" class="submit-button">Submit</v-btn>
     </v-form>
   </v-container>
 </template>
@@ -44,11 +53,25 @@
   const rateLimited = ref(false);
   const modalOpened = ref(false);
   const timeRemaining = ref(0);
+
+  const closeModal = () => (modalOpened.value = false);
+  const openModal = () => (modalOpened.value = true);
 </script>
 
 <style scoped>
-  .page-title {
+  .page-title,
+  .submit-button {
     display: flex;
     justify-content: center;
+  }
+
+  .dialog {
+    margin: 0;
+  }
+
+  @media (min-width: 1280px) {
+    .dialog {
+      margin: 0 30vw;
+    }
   }
 </style>
