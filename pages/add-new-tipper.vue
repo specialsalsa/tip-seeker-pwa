@@ -9,6 +9,18 @@
     </v-card>
   </v-dialog>
   <v-container class="card">
+    <div class="position-button-container">
+      <v-btn
+        size="default"
+        class="position-button"
+        @click="
+          getPosition();
+          coords && reverseGeolocationLookup(coords);
+        "
+        prepend-icon="mdi-map-marker"
+        >Use Current Position</v-btn
+      >
+    </div>
     <v-form
       class="form"
       @submit.prevent="
@@ -44,7 +56,13 @@
 </template>
 
 <script setup lang="ts">
+  import { reverse } from "lodash";
   import { useSubmitRating } from "~/composables/useSubmitRating";
+
+  interface Coordinates {
+    latitude: number;
+    longitude: number;
+  }
 
   const address = ref("");
   const city = ref("");
@@ -52,10 +70,40 @@
   const rating = ref(0);
   const rateLimited = ref(false);
   const modalOpened = ref(false);
+  const coords = ref();
+
+  const reverseGeolocationLookup = async (coords: Coordinates) => {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?lat=${coords.latitude}&lon=${coords.longitude}`
+    );
+
+    const json = await res.json();
+
+    if (json.features[0]) {
+      address.value = `${json.features[0].properties.address.house_number} ${json.features[0].properties.address.road}`;
+      city.value = `${
+        json.features[0].properties.address.city ||
+        json.features[0].properties.address.town
+      }`;
+      state.value = json.features[0].properties.address.state;
+    }
+  };
+
   const timeRemaining = ref(0);
 
   const closeModal = () => (modalOpened.value = false);
   const openModal = () => (modalOpened.value = true);
+
+  const getPosition = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        coords.value = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+      });
+    }
+  };
 </script>
 
 <style scoped>
@@ -67,6 +115,12 @@
 
   .dialog {
     margin: 0;
+  }
+
+  .position-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
   }
 
   @media (min-width: 1280px) {
