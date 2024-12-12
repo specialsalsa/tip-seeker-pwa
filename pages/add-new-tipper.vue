@@ -53,7 +53,6 @@
 </template>
 
 <script setup lang="ts">
-  import { reverse } from "lodash";
   import { useSubmitRating } from "~/composables/useSubmitRating";
 
   interface Coordinates {
@@ -71,7 +70,6 @@
 
   const handleGetPosition = async () => {
     await getPosition();
-    await reverseGeolocationLookup(coords.value);
   };
 
   const reverseGeolocationLookup = async (coords: Coordinates) => {
@@ -104,11 +102,16 @@
 
   const getPosition = async () => {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(async (position) => {
         coords.value = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
+
+        await reverseGeolocationLookup({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
       });
     }
   };
