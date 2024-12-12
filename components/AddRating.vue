@@ -69,9 +69,9 @@
       rateLimited.value = true;
       modalOpen.value = true;
       timeRemaining.value = json.timeRemaining;
+    } else {
+      user.tipRatings.push(rating.toString());
     }
-
-    user.tipRatings.push(rating.toString());
   };
 
   const closeModal = () => (modalOpen.value = false);

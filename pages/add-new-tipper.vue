@@ -47,7 +47,9 @@
         <v-radio label="Good Tipper" value="4"></v-radio>
         <v-radio label="Great Tipper" value="5"></v-radio>
       </v-radio-group>
-      <v-btn type="submit" class="submit-button">Submit</v-btn>
+      <div class="position-button-container">
+        <v-btn type="submit" class="submit-button">Submit</v-btn>
+      </div>
     </v-form>
   </v-container>
 </template>

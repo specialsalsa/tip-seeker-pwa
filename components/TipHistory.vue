@@ -21,5 +21,6 @@
   .history-item-container {
     display: flex;
     justify-content: center;
+    padding-bottom: 1rem;
   }
 </style>
