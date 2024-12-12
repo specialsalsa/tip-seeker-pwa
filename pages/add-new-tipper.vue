@@ -74,7 +74,13 @@
 
   const reverseGeolocationLookup = async (coords: Coordinates) => {
     const res = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?lat=${coords.latitude}&lon=${coords.longitude}`
+      `https://nominatim.openstreetmap.org/reverse?lat=${coords.latitude}&lon=${coords.longitude}&format=geojson`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      }
     );
 
     const json = await res.json();
