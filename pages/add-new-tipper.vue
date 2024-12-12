@@ -13,10 +13,7 @@
       <v-btn
         size="default"
         class="position-button"
-        @click="
-          getPosition();
-          coords && reverseGeolocationLookup(coords);
-        "
+        @click="handleGetPosition"
         prepend-icon="mdi-map-marker"
         >Use Current Position</v-btn
       >
@@ -71,6 +68,11 @@
   const rateLimited = ref(false);
   const modalOpened = ref(false);
   const coords = ref();
+
+  const handleGetPosition = () => {
+    getPosition();
+    reverseGeolocationLookup(coords.value);
+  };
 
   const reverseGeolocationLookup = async (coords: Coordinates) => {
     const res = await fetch(
