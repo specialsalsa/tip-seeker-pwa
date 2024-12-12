@@ -69,9 +69,9 @@
   const modalOpened = ref(false);
   const coords = ref();
 
-  const handleGetPosition = () => {
-    getPosition();
-    reverseGeolocationLookup(coords.value);
+  const handleGetPosition = async () => {
+    await getPosition();
+    await reverseGeolocationLookup(coords.value);
   };
 
   const reverseGeolocationLookup = async (coords: Coordinates) => {
@@ -102,7 +102,7 @@
   const closeModal = () => (modalOpened.value = false);
   const openModal = () => (modalOpened.value = true);
 
-  const getPosition = () => {
+  const getPosition = async () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         coords.value = {
