@@ -6,6 +6,10 @@
       <span>Lookup</span>
     </v-btn>
 
+    <v-btn @click="navigateTo('/add-new-tipper')">
+      <v-icon>mdi-account-edit</v-icon>
+      <span>Add New Tipper</span>
+    </v-btn>
     <v-btn @click="navigateTo('/tip-log')">
       <v-icon>mdi-book-open-variant</v-icon>
       <span>Tip Log</span>
