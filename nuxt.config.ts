@@ -13,14 +13,14 @@ export default defineNuxtConfig({
   },
 
   devServer: {
-    // https: {
-    //   key: fs
-    //     .readFileSync(path.resolve(__dirname, "192.168.68.109-key.pem"))
-    //     .toString(),
-    //   cert: fs
-    //     .readFileSync(path.resolve(__dirname, "192.168.68.109.pem"))
-    //     .toString(),
-    // },
+    https: {
+      key: fs
+        .readFileSync(path.resolve(__dirname, "192.168.68.109-key.pem"))
+        .toString(),
+      cert: fs
+        .readFileSync(path.resolve(__dirname, "192.168.68.109.pem"))
+        .toString(),
+    },
   },
 
   modules: ["vuetify-nuxt-module", "@vite-pwa/nuxt", "@pinia/nuxt"],
