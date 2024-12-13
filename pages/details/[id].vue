@@ -35,8 +35,8 @@
   };
 
   const getProps = () => {
-    const propObj = JSON.parse(localStorage.getItem("props") || "");
-    if (propObj) {
+    const propObj = JSON.parse(localStorage.getItem("props") || "{}");
+    if (propObj.address) {
       tipperData.address = propObj.address;
       tipperData.tipRatings = propObj.tipRatings;
       tipperData.notes = propObj.notes;
