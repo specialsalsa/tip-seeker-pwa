@@ -1,6 +1,6 @@
 <template>
   <h1 class="page-title">Add New Tipper</h1>
-  <v-dialog v-model="modalOpened" class="dialog">
+  <v-dialog v-model="modalOpen" class="dialog">
     <v-card class="card-modal" rounded="lg" density="compact">
       <v-card-text>Successfully added rating! </v-card-text>
       <v-card-actions>
@@ -99,8 +99,8 @@
 
   const timeRemaining = ref(0);
 
-  const closeModal = () => (modalOpened.value = false);
-  const openModal = () => (modalOpened.value = true);
+  const closeModal = () => (modalOpen.value = false);
+  const openModal = () => (modalOpen.value = true);
 
   const getPosition = async () => {
     if ("geolocation" in navigator) {
