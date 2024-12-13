@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
   import { getUserKey } from "~/util/util";
-  import { debounce } from "lodash";
+  import _ from "lodash";
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
   import { useGetTippers } from "~/composables/useGetTippers";
@@ -64,7 +64,7 @@
 
     store.formData = data;
 
-    const throttledLookup = debounce(useGetTippers, 150, {
+    const throttledLookup = _.debounce(useGetTippers, 150, {
       leading: true,
       trailing: false,
     });
