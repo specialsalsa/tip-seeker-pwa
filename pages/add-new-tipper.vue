@@ -75,7 +75,6 @@
   const handleGetPosition = async () => {
     loading.value = true;
     await getPosition();
-    loading.value = false;
   };
 
   const reverseGeolocationLookup = async (coords: Coordinates) => {
@@ -98,6 +97,8 @@
         json.features[0].properties.address.town
       }`;
       state.value = json.features[0].properties.address.state;
+
+      loading.value = false;
     }
   };
 
