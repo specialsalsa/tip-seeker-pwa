@@ -47,9 +47,9 @@
     if (!tipperData.address) getProps();
   });
 
-  window.onbeforeunload = () => {
+  onBeforeUnmount(() => {
     saveProps();
-  };
+  });
 </script>
 
 <style scoped>
