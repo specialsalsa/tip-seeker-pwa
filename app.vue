@@ -13,7 +13,7 @@
   <VitePwaManifest />
   <div>
     <v-app>
-      <NuxtPage :keepalive="true" page-key="index" />
+      <NuxtPage page-key="index" />
       <Tabs />
     </v-app>
   </div>

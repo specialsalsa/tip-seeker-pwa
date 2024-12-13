@@ -4,6 +4,14 @@ import path from "path";
 export default defineNuxtConfig({
   css: ["~/global-styles.css"],
 
+  routeRules: {
+    "/": {
+      cache: {
+        base: "db",
+      },
+    },
+  },
+
   devServer: {
     // https: {
     //   key: fs
