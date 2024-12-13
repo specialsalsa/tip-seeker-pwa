@@ -28,6 +28,28 @@
 
   const tipperData = useUserStore();
   const mapsLink = `geo:0,0?q=${tipperData.address}`;
+
+  const saveProps = () => {
+    const propObj = tipperData;
+    localStorage.setItem("props", JSON.stringify(propObj));
+  };
+
+  const getProps = () => {
+    const propObj = JSON.parse(localStorage.getItem("props") || "");
+    if (propObj) {
+      tipperData.address = propObj.address;
+      tipperData.tipRatings = propObj.tipRatings;
+      tipperData.notes = propObj.notes;
+    }
+  };
+
+  onBeforeMount(() => {
+    if (!tipperData.address) getProps();
+  });
+
+  window.onbeforeunload = () => {
+    saveProps();
+  };
 </script>
 
 <style scoped>
