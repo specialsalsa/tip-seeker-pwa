@@ -40,7 +40,7 @@ export default defineNuxtConfig({
     manifest: {
       name: "Tip Seeker",
       short_name: "TipSeeker",
-      theme_color: "#ffffff",
+      theme_color: "#000000",
       start_url: ".",
       display: "standalone",
       background_color: "#000000",
