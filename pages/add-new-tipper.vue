@@ -12,6 +12,7 @@
     <div class="position-button-container">
       <v-btn
         size="default"
+        :loading="loading"
         class="position-button"
         @click="handleGetPosition"
         prepend-icon="mdi-map-marker"
@@ -69,9 +70,12 @@
   const rateLimited = ref(false);
   const modalOpen = ref(false);
   const coords = ref();
+  const loading = ref(false);
 
   const handleGetPosition = async () => {
+    loading.value = true;
     await getPosition();
+    loading.value = false;
   };
 
   const reverseGeolocationLookup = async (coords: Coordinates) => {
