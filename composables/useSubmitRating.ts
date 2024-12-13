@@ -49,6 +49,7 @@ export const useSubmitRating = async (
     timeRemaining = json.timeRemaining;
   } else {
     rateLimited = false;
+    modalOpen = true;
   }
 
   user.tipRatings.push(rating.toString());

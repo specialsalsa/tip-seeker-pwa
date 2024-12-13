@@ -27,10 +27,10 @@
           state,
           rating,
           rateLimited,
-          modalOpened,
+          modalOpen,
           timeRemaining
         );
-        openModal();
+        modalOpen && openModal();
       "
     >
       <v-text-field
@@ -67,7 +67,7 @@
   const state = ref("");
   const rating = ref(0);
   const rateLimited = ref(false);
-  const modalOpened = ref(false);
+  const modalOpen = ref(false);
   const coords = ref();
 
   const handleGetPosition = async () => {
