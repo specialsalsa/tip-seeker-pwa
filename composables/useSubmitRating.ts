@@ -1,5 +1,8 @@
 import { useUserStore } from "~/store/store";
-import { getCsrfTokenFromLocalStorage } from "~/util/util";
+import {
+  getCsrfTokenFromLocalStorage,
+  getStateAbbreviation,
+} from "~/util/util";
 
 export const useSubmitRating = async (
   address: string,
@@ -24,7 +27,11 @@ export const useSubmitRating = async (
   );
 
   const res = await fetch(
-    `https://wildlyle.dev:8020/setTipData?address=${address}, ${city}, ${state}&tipRating=${rating}&timestamp=${Date.now()}`,
+    `https://wildlyle.dev:8020/setTipData?address=${address
+      .trim()
+      .toLowerCase()}, ${city.trim().toLowerCase()}, ${getStateAbbreviation(
+      state
+    )}&tipRating=${rating}&timestamp=${Date.now()}`,
     {
       method: "POST",
       headers: {
@@ -40,6 +47,8 @@ export const useSubmitRating = async (
     rateLimited = true;
     modalOpen = true;
     timeRemaining = json.timeRemaining;
+  } else {
+    rateLimited = false;
   }
 
   user.tipRatings.push(rating.toString());

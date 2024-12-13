@@ -27,13 +27,15 @@ export const useGetTippers = async (
     resCount++;
 
     if (json) {
-      return json.map((order: TipperResponse, index: number) => {
-        return {
-          ...order,
-          address: capitalizeFirstLetter(order.address),
-          key: index + resCount * 10 + 1,
-        };
-      });
+      return json.map(
+        (order: TipperResponse, index: number): TipperResponse => {
+          return {
+            ...order,
+            address: capitalizeFirstLetter(order.address),
+            key: index + resCount * 10 + 1,
+          };
+        }
+      );
     }
   } catch (err) {
     console.log(err);

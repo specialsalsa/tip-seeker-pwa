@@ -129,7 +129,6 @@ export const replaceWithAbbreviation = (
           `, ${state.abbreviation.toLowerCase()}`,
           `, ${state.abbreviation.toUpperCase()}`
         );
-        8465;
       }
     } else {
       if (address.includes(state.name)) {
@@ -308,8 +307,8 @@ export function getCsrfTokenFromLocalStorage(): string | null {
   return token;
 }
 
-export function capitalizeFirstLetter(words: string) {
-  if (!words) return;
+export function capitalizeFirstLetter(words: string): string {
+  if (!words) return "";
   words = replaceLastStateAbbreviation(words);
 
   const wordsArray = words.split(" ");

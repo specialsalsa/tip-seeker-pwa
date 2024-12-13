@@ -7,7 +7,7 @@ export interface TipperResponse {
   _id: string;
   id: string;
   address: string;
-  coordinates: number | null[];
+  coordinates: number | [];
   tipRating: string[];
   __v: number;
   note: string[];
