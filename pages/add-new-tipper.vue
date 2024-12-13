@@ -22,9 +22,9 @@
       class="form"
       @submit.prevent="
         useSubmitRating(
-          address,
-          city,
-          state,
+          address.trim().toLowerCase(),
+          city.trim().toLowerCase(),
+          getStateAbbreviation(state.trim()).toLowerCase(),
           rating,
           rateLimited,
           modalOpened,
@@ -56,6 +56,7 @@
 
 <script setup lang="ts">
   import { useSubmitRating } from "~/composables/useSubmitRating";
+  import { getStateAbbreviation } from "~/util/util";
 
   interface Coordinates {
     latitude: number;

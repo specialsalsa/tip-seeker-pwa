@@ -1,8 +1,8 @@
 import { customAlphabet } from "nanoid";
 const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 10);
 
-export const getStateAbbreviation = (fullName: string) => {
-  if (!fullName) return;
+export const getStateAbbreviation = (fullName: string): string => {
+  if (!fullName) return "";
   const abbreviations = [
     { name: "Alabama", abbreviation: "AL" },
     { name: "Alaska", abbreviation: "AK" },
