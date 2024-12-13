@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 export default defineNuxtConfig({
   css: ["~/global-styles.css"],
-
+  ssr: false,
   routeRules: {
     "/": {
       cache: {
