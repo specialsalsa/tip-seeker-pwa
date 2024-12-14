@@ -29,8 +29,18 @@
   const tipperData = useUserStore();
   const mapsLink = `geo:0,0?q=${tipperData.address}`;
 
+  interface PropObj {
+    address: string;
+    tipRatings: string[];
+    notes: string[];
+  }
+
   const saveProps = () => {
-    const propObj = tipperData;
+    const propObj: PropObj = {
+      address: tipperData.address,
+      tipRatings: tipperData.tipRatings,
+      notes: tipperData.notes,
+    };
     localStorage.setItem("props", JSON.stringify(propObj));
   };
 
@@ -47,9 +57,9 @@
     if (!tipperData.address) getProps();
   });
 
-  onBeforeUnmount(() => {
+  window.onbeforeunload = () => {
     saveProps();
-  });
+  };
 </script>
 
 <style scoped>
