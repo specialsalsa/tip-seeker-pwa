@@ -39,14 +39,23 @@
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
   import { useGetTippers } from "~/composables/useGetTippers";
+  import type { VNodeRef } from "vue";
 
   const store = useUserStore();
 
   const userKey = getUserKey();
 
-  const textInputRef = ref();
+  const textInputRef = ref<VNodeRef | null>(null);
 
-  store.setUserKey(userKey as string);
+  onMounted(() => {
+    if (textInputRef.value) {
+      textInputRef.value.focus();
+    }
+  });
+
+  if (userKey) {
+    store.setUserKey(userKey);
+  }
 
   onMounted(() => {
     handleInput(store.formData);
