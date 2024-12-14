@@ -20,11 +20,11 @@ export const useUserStore = defineStore("user", {
     setUserKey(key: string) {
       this.userKey = key;
     },
-    async editNote(oldNote: string, newNote: string) {
+    async editNote(index: number, oldNote: string, newNote: string) {
       let csrfToken = getCsrfTokenFromMemory();
 
       const res = await fetch(
-        `https://wildlyle.dev:8020/editNote?address=${this.address}&oldNote=${oldNote}&newNote=${newNote}`,
+        `https://wildlyle.dev:8020/editNote?address=${this.address.toLowerCase()}&oldNote=${oldNote}&newNote=${newNote}`,
         {
           method: "POST",
           headers: {
@@ -32,7 +32,7 @@ export const useUserStore = defineStore("user", {
           },
         }
       );
-      this.notes.splice(this.notes.indexOf(oldNote), 1).push(newNote);
+      this.notes.splice(index, 1, newNote);
     },
 
     async addNote(newNote: string) {
@@ -40,7 +40,7 @@ export const useUserStore = defineStore("user", {
 
       if (csrfToken) {
         const res = await fetch(
-          `https://wildlyle.dev:8020/setTipData?address=${this.address}&note=${newNote}`,
+          `https://wildlyle.dev:8020/setTipData?address=${this.address.toLowerCase()}&note=${newNote}`,
           {
             method: "POST",
             credentials: "include",
@@ -52,6 +52,21 @@ export const useUserStore = defineStore("user", {
       }
 
       this.notes.push(newNote);
+    },
+    async deleteNote(note: string) {
+      let csrfToken = getCsrfTokenFromMemory();
+
+      if (csrfToken) {
+        const res = await fetch(
+          `https://wildlyle.dev:8020/deleteNote?address=${this.address.toLowerCase()}&note=${note}`,
+          {
+            method: "GET",
+            headers: {
+              "X-Csrf-Token": csrfToken,
+            },
+          }
+        );
+      }
     },
   },
 });

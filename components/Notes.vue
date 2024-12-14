@@ -84,9 +84,8 @@
   };
 
   const submitNoteChange = (index: number): void => {
-    //todo: create action in store for real saving
-    state.editNote(state.notes[index], noteText.value);
-    // state.notes[index] = noteText.value;
+    state.editNote(index, state.notes[index], noteText.value);
+
     noteIndex.value = null;
     noteText.value = "";
     newNoteActive.value = false;
@@ -95,7 +94,6 @@
   };
 
   const submitNoteAdd = (): void => {
-    //todo: create action in store for real saving
     state.addNote(noteText.value);
     // state.notes[index] = noteText.value;
     noteIndex.value = null;
@@ -107,6 +105,7 @@
 
   const deleteNote = (index: number): void => {
     //todo: create action in store for real saving
+    state.deleteNote(state.notes[index]);
     delete state.notes[index];
     noteIndex.value = null;
     noteText.value = "";
