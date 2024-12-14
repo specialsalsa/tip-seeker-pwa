@@ -49,7 +49,7 @@
 
   onMounted(() => {
     if (textInputRef.value) {
-      textInputRef.value.focus();
+      textInputRef.value.click();
     }
   });
 
