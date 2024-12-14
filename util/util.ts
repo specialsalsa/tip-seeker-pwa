@@ -299,8 +299,7 @@ export async function fetchCsrfCookie() {
 
 export function getCsrfTokenFromCookie() {
   const csrfCookie = document.cookie.slice(document.cookie.indexOf("="))[1];
-  console.log(document.cookie);
-  return csrfCookie ? csrfCookie.split("=")[1] : null;
+  return csrfCookie ? csrfCookie : "";
 }
 
 export function getCsrfTokenFromLocalStorage(): string | null {

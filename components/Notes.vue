@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <v-form @submit.prevent="submitNoteChange(state.notes.length)">
+    <v-form @submit.prevent="submitNoteAdd()">
       <v-text-field
         class="text-field"
         density="compact"
@@ -85,7 +85,19 @@
 
   const submitNoteChange = (index: number): void => {
     //todo: create action in store for real saving
-    state.notes[index] = noteText.value;
+    state.editNote(state.notes[index], noteText.value);
+    // state.notes[index] = noteText.value;
+    noteIndex.value = null;
+    noteText.value = "";
+    newNoteActive.value = false;
+
+    //todo: submit to database
+  };
+
+  const submitNoteAdd = (): void => {
+    //todo: create action in store for real saving
+    state.addNote(noteText.value);
+    // state.notes[index] = noteText.value;
     noteIndex.value = null;
     noteText.value = "";
     newNoteActive.value = false;

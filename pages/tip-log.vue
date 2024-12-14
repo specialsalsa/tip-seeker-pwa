@@ -43,7 +43,9 @@
     return [];
   };
 
-  tipperArray.value = await getUserOrders(userKey as string);
+  if (userKey) {
+    tipperArray.value = await getUserOrders(userKey);
+  }
 </script>
 
 <style scoped>
