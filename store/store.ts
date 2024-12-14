@@ -1,6 +1,6 @@
 import { defineStore } from "#build/imports";
 import type { StoreState } from "~/types";
-import { getCsrfTokenFromCookie } from "~/util/util";
+import { getCsrfTokenFromCookie, getCsrfTokenFromMemory } from "~/util/util";
 
 export const useUserStore = defineStore("user", {
   state: (): StoreState => ({
@@ -21,14 +21,14 @@ export const useUserStore = defineStore("user", {
       this.userKey = key;
     },
     async editNote(oldNote: string, newNote: string) {
-      let csrfToken = getCsrfTokenFromCookie();
+      let csrfToken = getCsrfTokenFromMemory();
 
       const res = await fetch(
         `https://wildlyle.dev:8020/editNote?address=${this.address}&oldNote=${oldNote}&newNote=${newNote}`,
         {
           method: "POST",
           headers: {
-            "X-CSRF-Token": csrfToken,
+            "X-Csrf-Token": csrfToken!,
           },
         }
       );
@@ -36,17 +36,20 @@ export const useUserStore = defineStore("user", {
     },
 
     async addNote(newNote: string) {
-      let csrfToken = getCsrfTokenFromCookie();
+      let csrfToken = getCsrfTokenFromMemory();
 
-      const res = await fetch(
-        `https://wildlyle.dev:8020/setTipData?address=${this.address}&note=${newNote}`,
-        {
-          method: "POST",
-          headers: {
-            "X-CSRF-Token": csrfToken,
-          },
-        }
-      );
+      if (csrfToken) {
+        const res = await fetch(
+          `https://wildlyle.dev:8020/setTipData?address=${this.address}&note=${newNote}`,
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "X-Csrf-Token": csrfToken,
+            },
+          }
+        );
+      }
 
       this.notes.push(newNote);
     },

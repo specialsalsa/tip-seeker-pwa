@@ -1,8 +1,5 @@
 import { useUserStore } from "~/store/store";
-import {
-  getCsrfTokenFromLocalStorage,
-  getStateAbbreviation,
-} from "~/util/util";
+import { getCsrfTokenFromMemory, getStateAbbreviation } from "~/util/util";
 
 export const useSubmitRating = async (
   address: string,
@@ -14,17 +11,7 @@ export const useSubmitRating = async (
   timeRemaining: number
 ): Promise<void> => {
   const user = useUserStore();
-  const csrfToken = getCsrfTokenFromLocalStorage();
-
-  console.log(
-    address,
-    city,
-    state,
-    rating,
-    rateLimited,
-    modalOpen,
-    timeRemaining
-  );
+  const csrfToken = getCsrfTokenFromMemory();
 
   const res = await fetch(
     `https://wildlyle.dev:8020/setTipData?address=${address
@@ -36,7 +23,7 @@ export const useSubmitRating = async (
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken!,
+        "X-Csrf-Token": csrfToken!,
       },
     }
   );
