@@ -47,19 +47,9 @@
 
   const textInputRef = ref<VNodeRef | null>(null);
 
-  onMounted(() => {
-    if (textInputRef.value) {
-      textInputRef.value.click();
-    }
-  });
-
   if (userKey) {
     store.setUserKey(userKey);
   }
-
-  onMounted(() => {
-    handleInput(store.formData);
-  });
 
   let resCount = 0;
 
