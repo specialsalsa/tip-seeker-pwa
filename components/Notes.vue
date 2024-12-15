@@ -2,7 +2,7 @@
   <v-card elevation="2" class="card" rounded="lg">
     <v-card-title>Notes</v-card-title>
     <div class="notes-container" v-for="(note, index) in state.notes">
-      <div class="note-edit-container">
+      <div class="note-edit-container" v-if="noteIndex === index">
         <v-form @submit.prevent="submitNoteChange(index)" class="form">
           <v-text-field
             class="text-field"
@@ -18,9 +18,7 @@
       </div>
       <div class="note-text-container" v-if="noteIndex !== index || !note">
         <!-- <v-text-field label="Label"></v-text-field> -->
-        <p :id="'note-' + index" class="note">
-          {{ note }}
-        </p>
+        <p :id="'note-' + index" class="note">{{ note }}</p>
       </div>
       <div class="note-icon-container">
         <v-icon
