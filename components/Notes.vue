@@ -136,13 +136,11 @@
   .note-text-container {
     min-width: 50vw;
     text-align: center;
-    margin-bottom: 1.5vh;
   }
 
   .note-icon-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5vh;
   }
 
   .note-edit-container {
