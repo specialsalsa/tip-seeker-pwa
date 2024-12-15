@@ -32,10 +32,7 @@
 
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
-  import {
-    getCsrfTokenFromCookie,
-    getCsrfTokenFromLocalStorage,
-  } from "~/util/util";
+  import { getCsrfTokenFromCookie, getCsrfTokenFromMemory } from "~/util/util";
 
   const user = useUserStore();
   const rating = ref(0);
@@ -59,6 +56,7 @@
       }&tipRating=${rating}&timestamp=${Date.now()}`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
           "X-Csrf-Token": csrfToken!,
