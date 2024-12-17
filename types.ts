@@ -6,7 +6,7 @@ export interface TipperData {
 export interface TipperResponse {
   _id: string;
   id: string;
-  address: string;
+  address: `${number} ${string}`;
   coordinates: number[] | [];
   tipRating: string[];
   __v: number;

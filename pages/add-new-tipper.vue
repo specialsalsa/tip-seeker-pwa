@@ -16,8 +16,8 @@
         class="position-button"
         @click="handleGetPosition"
         prepend-icon="mdi-map-marker"
-        >Use Current Position</v-btn
-      >
+        >Use Current Position
+      </v-btn>
     </div>
     <v-form
       class="form"

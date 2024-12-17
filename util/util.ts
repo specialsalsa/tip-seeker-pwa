@@ -199,19 +199,6 @@ const states: IStates = {
   wy: "WY",
 };
 
-function replaceStateAbbreviation(address: string) {
-  // List of state abbreviations
-
-  // Regex to match state abbreviation followed optionally by a ZIP code
-  const stateRegex = new RegExp(
-    `\\b(${Object.keys(states).join("|")})(?=\\b|\\s|,|$)`,
-    "gi"
-  );
-
-  // Replace lowercase abbreviation with uppercase
-  return address.replace(stateRegex, (match) => states[match.toLowerCase()]);
-}
-
 export const handleStarRating = (rating: number, low: number, high: number) => {
   if (rating < low) {
     return "mdi-star-outline";

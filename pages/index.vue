@@ -41,6 +41,10 @@
   import { useGetTippers } from "~/composables/useGetTippers";
   import type { VNodeRef } from "vue";
 
+  onMounted(() => {
+    handleInput(store.formData);
+  });
+
   const store = useUserStore();
 
   const userKey = getUserKey();
