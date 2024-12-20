@@ -2,7 +2,7 @@
   <h1 class="page-title">Add New Tipper</h1>
   <v-dialog v-model="modalOpen" class="dialog">
     <v-card class="card-modal" rounded="lg" density="compact">
-      <v-card-text>Successfully added rating! </v-card-text>
+      <v-card-text>{{ modalText }} </v-card-text>
       <v-card-actions>
         <v-btn @click="closeModal" size="default">Close</v-btn>
       </v-card-actions>
@@ -19,21 +19,7 @@
         >Use Current Position
       </v-btn>
     </div>
-    <v-form
-      class="form"
-      @submit.prevent="
-        useSubmitRating(
-          address,
-          city,
-          state,
-          rating,
-          rateLimited,
-          modalOpen,
-          timeRemaining
-        );
-        modalOpen && openModal();
-      "
-    >
+    <v-form class="form" @submit.prevent="handleSubmit()">
       <v-text-field
         class="input"
         v-model="address"
@@ -69,8 +55,34 @@
   const rating = ref(0);
   const rateLimited = ref(false);
   const modalOpen = ref(false);
+  const modalText = ref("");
   const coords = ref();
   const loading = ref(false);
+
+  const handleSubmit = () => {
+    useSubmitRating(
+      address.value,
+      city.value,
+      state.value,
+      rating.value,
+      rateLimited.value,
+      modalOpen.value,
+      timeRemaining.value
+    ).then((result) => {
+      if (typeof result === "string") {
+        modalText.value = result;
+        modalOpen.value = true;
+      } else if (typeof result === "boolean") {
+        if (!result) {
+          modalText.value = "Successfully added new rating!";
+          modalOpen.value = true;
+        } else {
+          modalText.value = "Existing rating updated!";
+          modalOpen.value = true;
+        }
+      }
+    });
+  };
 
   const handleGetPosition = async () => {
     loading.value = true;
