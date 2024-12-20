@@ -27,6 +27,7 @@ export const useUserStore = defineStore("user", {
         `https://wildlyle.dev:8020/editNote?address=${this.address.toLowerCase()}&oldNote=${oldNote}&newNote=${newNote}`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "X-Csrf-Token": csrfToken!,
           },
