@@ -18,7 +18,9 @@ export const useSubmitRating = async (
       .trim()
       .toLowerCase()}, ${city.trim().toLowerCase()}, ${getStateAbbreviation(
       state
-    )}&tipRating=${rating}&timestamp=${Date.now()}&userKey=${user.userKey}`,
+    ).toLowerCase()}&tipRating=${rating}&timestamp=${Date.now()}&userKey=${
+      user.userKey
+    }`,
     {
       method: "POST",
       credentials: "include",

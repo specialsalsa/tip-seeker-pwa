@@ -45,7 +45,7 @@
 
   onMounted(async () => {
     if (userKey) {
-      tipperArray.value = await getUserOrders(userKey);
+      tipperArray.value = (await getUserOrders(userKey)).toReversed();
     }
   });
 </script>
