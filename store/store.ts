@@ -62,6 +62,7 @@ export const useUserStore = defineStore("user", {
           `https://wildlyle.dev:8020/deleteNote?address=${this.address.toLowerCase()}&note=${note}`,
           {
             method: "GET",
+            credentials: "include",
             headers: {
               "X-Csrf-Token": csrfToken,
             },
