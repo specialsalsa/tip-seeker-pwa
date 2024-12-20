@@ -39,7 +39,7 @@
   const rateLimited = ref(false);
   const modalOpen = ref(false);
   const timeRemaining = ref(0);
-  const csrfToken = getCsrfTokenFromCookie();
+  const csrfToken = getCsrfTokenFromMemory();
 
   const handleStarRating = (rating: number, target: number): string => {
     if (rating < target) {
