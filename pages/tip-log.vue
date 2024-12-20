@@ -43,9 +43,11 @@
     return [];
   };
 
-  if (userKey) {
-    tipperArray.value = await getUserOrders(userKey);
-  }
+  onMounted(async () => {
+    if (userKey) {
+      tipperArray.value = await getUserOrders(userKey);
+    }
+  });
 </script>
 
 <style scoped>

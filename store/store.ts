@@ -1,6 +1,6 @@
 import { defineStore } from "#build/imports";
 import type { StoreState } from "~/types";
-import { getCsrfTokenFromCookie, getCsrfTokenFromMemory } from "~/util/util";
+import { getCsrfTokenFromMemory } from "~/util/util";
 
 export const useUserStore = defineStore("user", {
   state: (): StoreState => ({

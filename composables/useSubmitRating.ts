@@ -18,9 +18,10 @@ export const useSubmitRating = async (
       .trim()
       .toLowerCase()}, ${city.trim().toLowerCase()}, ${getStateAbbreviation(
       state
-    )}&tipRating=${rating}&timestamp=${Date.now()}`,
+    )}&tipRating=${rating}&timestamp=${Date.now()}&userKey=${user.userKey}`,
     {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "X-Csrf-Token": csrfToken!,

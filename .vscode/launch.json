@@ -8,15 +8,15 @@
       "type": "firefox",
       "request": "launch",
       "name": "client: firefox2",
-      "url": "http://localhost:3000",
+      "url": "https://192.168.68.109:3000",
       "webRoot": "${workspaceFolder}",
       "pathMappings": [
         {
-          "url": "http://localhost:3000/_nuxt/pages",
+          "url": "https://192.168.68.109:3000/_nuxt/pages",
           "path": "${workspaceFolder}/pages"
         },
         {
-          "url": "http://localhost:3000/_nuxt/components",
+          "url": "https://192.168.68.109:3000/_nuxt/components",
           "path": "${workspaceFolder}/components"
         }
       ]
@@ -24,15 +24,30 @@
     {
       "name": "Attach",
       "type": "firefox",
-      "url": "http://localhost:3000",
+      "url": "https://192.168.68.109:3000",
       "webRoot": "${workspaceFolder}",
       "request": "attach",
       "pathMappings": [
         {
-          "url": "http://localhost:3000/_nuxt/components",
+          "url": "https://192.168.68.109:3000/_nuxt/components",
           "path": "${workspaceFolder}/components"
         }
       ]
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "client: chrome",
+      "url": "https://192.168.68.109:3000",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "server: nuxt",
+      "outputCapture": "std",
+      "program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+      "args": ["dev"]
     },
     {
       "name": "Launch WebExtension",

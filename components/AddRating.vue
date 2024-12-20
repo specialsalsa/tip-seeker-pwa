@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
-  import { getCsrfTokenFromCookie, getCsrfTokenFromMemory } from "~/util/util";
+  import { getCsrfTokenFromMemory } from "~/util/util";
 
   const user = useUserStore();
   const rating = ref(0);
@@ -53,7 +53,7 @@
     const res = await fetch(
       `https://wildlyle.dev:8020/setTipData?address=${
         user.address
-      }&tipRating=${rating}&timestamp=${Date.now()}`,
+      }&tipRating=${rating}&timestamp=${Date.now()}&userKey=${user.userKey}`,
       {
         method: "POST",
         credentials: "include",

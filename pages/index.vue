@@ -43,6 +43,9 @@
 
   onMounted(() => {
     handleInput(store.formData);
+    if (userKey) {
+      store.setUserKey(userKey);
+    }
   });
 
   const store = useUserStore();
@@ -50,10 +53,6 @@
   const userKey = getUserKey();
 
   const textInputRef = ref<VNodeRef | null>(null);
-
-  if (userKey) {
-    store.setUserKey(userKey);
-  }
 
   let resCount = 0;
 
