@@ -145,8 +145,8 @@
 
   .note-edit-container {
     display: flex;
-    max-width: 80vw;
-    margin-left: 20vw;
+    min-width: 50vw;
+    text-align: center;
   }
 
   .add-button-container {
