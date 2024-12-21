@@ -13,7 +13,7 @@ export const useGetTippers = async (
   const userKey = store.userKey;
   try {
     const res = await fetch(
-      `https://wildlyle.dev:8020/lookupTippers?address=${data}&userKey=${userKey}`,
+      `https://wildlyle.dev:8020/lookupTippers${process.env.SUPER_SECRET_PRO_KEY}?address=${data}&userKey=${userKey}`,
       {
         headers: {
           "Content-Type": "application/json",

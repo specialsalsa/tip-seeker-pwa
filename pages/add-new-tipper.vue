@@ -74,9 +74,11 @@
         modalOpen.value = true;
       } else if (typeof result === "boolean") {
         if (!result) {
+          // json.isUpdate === false
           modalText.value = "Successfully added new rating!";
           modalOpen.value = true;
         } else {
+          // json.isUpdate === true
           modalText.value = "Existing rating updated!";
           modalOpen.value = true;
         }
