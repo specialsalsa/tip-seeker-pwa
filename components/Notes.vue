@@ -125,7 +125,9 @@
 
   .note {
     margin-bottom: 0.5rem;
-    margin-right: 3rem;
+    margin-left: 10vw;
+    display: flex;
+    justify-content: center;
   }
 
   .notes-container {
@@ -134,6 +136,7 @@
   }
 
   .note-text-container {
+    display: flex;
     min-width: 50vw;
     text-align: center;
   }
