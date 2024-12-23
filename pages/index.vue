@@ -5,6 +5,7 @@
     <div class="text-field-container">
       <v-text-field
         label="Address"
+        autofocus
         class="address"
         v-model="store.formData"
         ref="textInputRef"
