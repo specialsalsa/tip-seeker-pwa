@@ -49,6 +49,16 @@
     }
   });
 
+  // Create a reference for the Wake Lock.
+  let wakeLock = null;
+
+  // create an async function to request a wake lock
+  try {
+    wakeLock = await navigator.wakeLock.request("screen");
+  } catch (err) {
+    // wakelock not available
+  }
+
   const store = useUserStore();
 
   const userKey = getUserKey();
