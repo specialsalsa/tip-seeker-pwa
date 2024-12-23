@@ -5,8 +5,8 @@
     <div class="text-field-container">
       <v-text-field
         label="Address"
-        autofocus
         class="address"
+        autofocus
         v-model="store.formData"
         ref="textInputRef"
         variant="solo"
@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
   import { getUserKey } from "~/util/util";
-  import _ from "lodash";
+  import { debounce } from "lodash";
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
   import { useGetTippers } from "~/composables/useGetTippers";
@@ -46,6 +46,9 @@
     handleInput(store.formData);
     if (userKey) {
       store.setUserKey(userKey);
+    }
+    if (textInputRef) {
+      textInputRef.value.click();
     }
   });
 
@@ -67,7 +70,7 @@
 
     store.formData = data;
 
-    const throttledLookup = _.debounce(useGetTippers, 150, {
+    const throttledLookup = debounce(useGetTippers, 150, {
       leading: true,
       trailing: false,
     });
