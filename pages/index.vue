@@ -7,7 +7,6 @@
         label="Address"
         class="address"
         v-model="store.formData"
-        autofocus
         ref="textInputRef"
         variant="solo"
         elevation="3"
@@ -46,12 +45,6 @@
     handleInput(store.formData);
     if (userKey) {
       store.setUserKey(userKey);
-    }
-    if (textInputRef) {
-      document.documentElement.requestFullscreen().then(() => {
-        // Now you can focus on the input
-        textInputRef.value.focus();
-      });
     }
   });
 
