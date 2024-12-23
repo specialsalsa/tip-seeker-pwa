@@ -34,6 +34,11 @@
         <v-radio label="Good Tipper" value="4"></v-radio>
         <v-radio label="Great Tipper" value="5"></v-radio>
       </v-radio-group>
+      <v-text-field
+        class="input"
+        v-model="note"
+        label="Note (Optional)"
+      ></v-text-field>
       <div class="position-button-container">
         <v-btn type="submit" class="submit-button">Submit</v-btn>
       </div>
@@ -54,6 +59,7 @@
   const city = ref("");
   const state = ref("");
   const rating = ref(0);
+  const note = ref("");
   const rateLimited = ref(false);
   const modalOpen = ref(false);
   const modalText = ref("");
@@ -70,12 +76,13 @@
       city.value,
       state.value,
       rating.value,
+      note.value,
       rateLimited.value,
       modalOpen.value,
       timeRemaining.value
     ).then((result) => {
       if (typeof result === "string") {
-        modalText.value = result;
+        modalText.value = result; // error message
         modalOpen.value = true;
       } else if (typeof result === "boolean") {
         if (!result) {

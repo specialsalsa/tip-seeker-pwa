@@ -6,12 +6,16 @@ export const useSubmitRating = async (
   city: string,
   state: string,
   rating: number,
+  note: string,
   rateLimited: boolean,
   modalOpen: boolean,
   timeRemaining: number
 ): Promise<string | void> => {
   const user = useUserStore();
   const csrfToken = getCsrfTokenFromMemory();
+  if (!address || !city || !state || !rating) {
+    return "Please fill out all fields before submitting";
+  }
 
   try {
     const res = await fetch(
@@ -19,7 +23,7 @@ export const useSubmitRating = async (
         .trim()
         .toLowerCase()}, ${city.trim().toLowerCase()}, ${getStateAbbreviation(
         state
-      ).toLowerCase()}&tipRating=${rating}&timestamp=${Date.now()}&userKey=${
+      ).toLowerCase()}&tipRating=${rating}&note=${note}&timestamp=${Date.now()}&userKey=${
         user.userKey
       }`,
       {
