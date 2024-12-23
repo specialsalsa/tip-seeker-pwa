@@ -14,7 +14,7 @@
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
-  import { getCsrfTokenFromMemory } from "~/util/util";
+  import { capitalizeFirstLetter, getCsrfTokenFromMemory } from "~/util/util";
   const csrfToken = getCsrfTokenFromMemory();
   const store = useUserStore();
   const userKey = store.userKey;
@@ -45,7 +45,12 @@
 
   onMounted(async () => {
     if (userKey) {
-      tipperArray.value = (await getUserOrders(userKey)).toReversed();
+      tipperArray.value = (await getUserOrders(userKey))
+        .map((tipper) => {
+          tipper.address = capitalizeFirstLetter(tipper.address);
+          return tipper;
+        })
+        .toReversed();
     }
   });
 </script>
