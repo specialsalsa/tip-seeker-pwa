@@ -7,6 +7,7 @@
         label="Address"
         class="address"
         v-model="store.formData"
+        autofocus
         ref="textInputRef"
         variant="solo"
         elevation="3"
