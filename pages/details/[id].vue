@@ -25,6 +25,11 @@
   import AddRating from "~/components/AddRating.vue";
   import Notes from "~/components/Notes.vue";
   import { useUserStore } from "~/store/store";
+  import { fetchCsrfCookie } from "~/util/util";
+
+  onMounted(async () => {
+    fetchCsrfCookie();
+  });
 
   const tipperData = useUserStore();
   const mapsLink = `geo:0,0?q=${tipperData.address}`;

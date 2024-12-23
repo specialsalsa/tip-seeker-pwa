@@ -14,7 +14,11 @@
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
-  import { capitalizeFirstLetter, getCsrfTokenFromMemory } from "~/util/util";
+  import {
+    capitalizeFirstLetter,
+    fetchCsrfCookie,
+    getCsrfTokenFromMemory,
+  } from "~/util/util";
   const csrfToken = getCsrfTokenFromMemory();
   const store = useUserStore();
   const userKey = store.userKey;
@@ -44,6 +48,7 @@
   };
 
   onMounted(async () => {
+    await fetchCsrfCookie();
     if (userKey) {
       tipperArray.value = (await getUserOrders(userKey))
         .map((tipper) => {

@@ -43,6 +43,7 @@
 
 <script setup lang="ts">
   import { useSubmitRating } from "~/composables/useSubmitRating";
+  import { fetchCsrfCookie } from "~/util/util";
 
   interface Coordinates {
     latitude: number;
@@ -58,6 +59,10 @@
   const modalText = ref("");
   const coords = ref();
   const loading = ref(false);
+
+  onMounted(async () => {
+    await fetchCsrfCookie();
+  });
 
   const handleSubmit = () => {
     useSubmitRating(
