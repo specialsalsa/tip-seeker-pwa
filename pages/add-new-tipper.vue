@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
   import { useSubmitRating } from "~/composables/useSubmitRating";
-  import { fetchCsrfCookie } from "~/util/util";
+  import { fetchCsrfCookie, getCsrfTokenFromMemory } from "~/util/util";
 
   interface Coordinates {
     latitude: number;
@@ -61,7 +61,7 @@
   const loading = ref(false);
 
   onMounted(async () => {
-    await fetchCsrfCookie();
+    if (!getCsrfTokenFromMemory()) await fetchCsrfCookie();
   });
 
   const handleSubmit = () => {

@@ -48,7 +48,7 @@
   };
 
   onMounted(async () => {
-    await fetchCsrfCookie();
+    if (!getCsrfTokenFromMemory()) await fetchCsrfCookie();
     if (userKey) {
       tipperArray.value = (await getUserOrders(userKey))
         .map((tipper) => {
