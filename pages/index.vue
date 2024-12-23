@@ -6,7 +6,6 @@
       <v-text-field
         label="Address"
         class="address"
-        autofocus
         v-model="store.formData"
         ref="textInputRef"
         variant="solo"
@@ -46,9 +45,6 @@
     handleInput(store.formData);
     if (userKey) {
       store.setUserKey(userKey);
-    }
-    if (textInputRef) {
-      textInputRef.value.click();
     }
   });
 
