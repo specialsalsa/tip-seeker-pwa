@@ -46,6 +46,12 @@
     if (userKey) {
       store.setUserKey(userKey);
     }
+    if (textInputRef) {
+      document.documentElement.requestFullscreen().then(() => {
+        // Now you can focus on the input
+        textInputRef.value.focus();
+      });
+    }
   });
 
   const store = useUserStore();
