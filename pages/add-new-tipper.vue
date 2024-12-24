@@ -151,8 +151,13 @@
 </script>
 
 <style scoped>
-  .page-title,
+  .page-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
   .submit-button {
+    
     display: flex;
     justify-content: center;
   }
