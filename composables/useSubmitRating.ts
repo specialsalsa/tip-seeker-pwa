@@ -31,7 +31,9 @@ export const useSubmitRating = async (
         .trim()
         .toLowerCase()}, ${city.trim().toLowerCase()}, ${getStateAbbreviation(
         state
-      ).toLowerCase()}&tipRating=${rating}&note=${note}&timestamp=${Date.now()}&userKey=${
+      )
+        .toLowerCase()
+        .trim()}&tipRating=${rating}&note=${note}&timestamp=${Date.now()}&userKey=${
         user.userKey
       }`,
       {
@@ -58,6 +60,6 @@ export const useSubmitRating = async (
     user.tipRatings.push(rating.toString());
     return json.isUpdate;
   } catch (err) {
-    return "Error submitting rating: Network Error";
+    return "Something went wrong, try again later";
   }
 };
