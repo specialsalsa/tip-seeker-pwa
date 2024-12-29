@@ -72,7 +72,7 @@
 
   const handleSubmit = () => {
     useSubmitRating(
-      address.value,
+      address,
       city.value,
       state.value,
       rating.value,
@@ -157,7 +157,6 @@
     margin-top: 1rem;
   }
   .submit-button {
-    
     display: flex;
     justify-content: center;
   }

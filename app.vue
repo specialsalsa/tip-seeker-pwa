@@ -1,20 +1,44 @@
-<script setup lang="ts">
-  import { useThemeSwitcher } from "./composables/useThemeSwitcher";
-  import { fetchCsrfCookie } from "./util/util";
-  const { updateTheme, watchThemeChange } = useThemeSwitcher();
-
-  onMounted(() => {
-    updateTheme();
-    watchThemeChange();
-    fetchCsrfCookie();
-  });
-</script>
 <template>
   <VitePwaManifest />
   <div>
     <v-app>
-      <NuxtPage page-key="index" />
-      <Tabs />
+      <v-overlay
+        :model-value="store.loadingTokenAuth"
+        class="align-center justify-center"
+      >
+        <v-progress-circular
+          color="primary"
+          size="64"
+          indeterminate
+        ></v-progress-circular>
+      </v-overlay>
+
+      <Login v-if="!store.isLoggedIn && !isLoading" />
+      <div v-if="store.isLoggedIn">
+        <NuxtPage page-key="index" />
+        <Tabs />
+      </div>
     </v-app>
   </div>
 </template>
+
+<script setup lang="ts">
+  import { useThemeSwitcher } from "./composables/useThemeSwitcher";
+  import { useUserStore } from "./store/store";
+  import { fetchCsrfCookie } from "./util/util";
+  const { updateTheme, watchThemeChange } = useThemeSwitcher();
+  const store = useUserStore();
+
+  const isLoading = ref(true);
+
+  onMounted(async () => {
+    await new Promise((resolve) =>
+      setTimeout(async () => resolve(await useAuth()))
+    );
+    isLoading.value = false;
+    await useAuth();
+    fetchCsrfCookie();
+    updateTheme();
+    watchThemeChange();
+  });
+</script>

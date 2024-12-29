@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll-container">
+  <div class="scroll-container" v-if="store.isLoggedIn">
     <h1 class="title">Tipper Lookup</h1>
 
     <div class="text-field-container">
@@ -47,6 +47,7 @@
   import type { VNodeRef } from "vue";
 
   onMounted(() => {
+    store.loadingTokenAuth = false;
     handleInput(store.formData);
     if (userKey) {
       store.setUserKey(userKey);

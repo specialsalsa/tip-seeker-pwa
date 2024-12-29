@@ -22,4 +22,6 @@ export interface StoreState {
   formData: string;
   userKey: string;
   csrfToken: string;
+  isLoggedIn: boolean;
+  loadingTokenAuth: boolean;
 }
