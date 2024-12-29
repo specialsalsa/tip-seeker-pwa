@@ -1,12 +1,14 @@
 <template>
-  <div class="container">
-    <v-card class="card" rounded="lg" elevation="2">
-      <v-card-title>Login</v-card-title>
-      <v-form @submit.prevent="login()">
+  <div class="container" v-if="!onSignup">
+    <h1 class="title">Login</h1>
+    <v-container class="card">
+      <!-- <v-card-title>Login</v-card-title> -->
+      <v-form @submit.prevent="login()" class="form">
         <v-text-field
           class="text-field"
           v-model="username"
-          label="Username"
+          label="Email"
+          type="email"
         ></v-text-field>
         <v-text-field
           class="text-field"
@@ -14,9 +16,50 @@
           v-model="password"
           label="Password"
         ></v-text-field>
-        <v-btn type="submit" class="submit-button">Login</v-btn>
+        <div class="btn-container">
+          <v-btn type="submit" class="submit-button">Login</v-btn>
+        </div>
       </v-form>
-    </v-card>
+      <div class="signup-container">
+        <span class="text-span">Don't have an account yet?</span>
+        <span>&nbsp;</span>
+        <a class="signup-link" @click="onSignup = true">Sign up</a>
+      </div>
+    </v-container>
+  </div>
+  <div class="container" v-else>
+    <h1 class="title">Sign Up</h1>
+    <v-container class="card">
+      <!-- <v-card-title>Login</v-card-title> -->
+      <v-form @submit.prevent="signUp()" class="form">
+        <v-text-field
+          class="text-field"
+          v-model="username"
+          label="Email"
+          type="email"
+        ></v-text-field>
+        <v-text-field
+          class="text-field"
+          type="password"
+          v-model="password"
+          label="Password"
+        ></v-text-field>
+        <v-text-field
+          class="text-field"
+          type="password"
+          v-model="confirmPassword"
+          label="Confirm Password"
+        ></v-text-field>
+        <div class="btn-container">
+          <v-btn type="submit" class="submit-button">Sign Up</v-btn>
+        </div>
+      </v-form>
+      <div class="signup-container">
+        <span class="text-span">Back to</span>
+        <span>&nbsp;</span>
+        <a class="signup-link" @click="onSignup = false">login</a>
+      </div>
+    </v-container>
   </div>
 </template>
 
@@ -29,6 +72,7 @@
   const confirmPassword = ref("");
   const modalOpen = ref(false);
   const modalText = ref("");
+  const onSignup = ref(false);
   let csrfToken = getCsrfTokenFromMemory();
   const store = useUserStore();
 
@@ -36,7 +80,7 @@
     store.loadingTokenAuth = false;
   });
 
-  const signUp = () => {
+  const signUp = async () => {
     if (password.value !== confirmPassword.value) {
       modalText.value = "Passwords do not match";
       modalOpen.value = true;
@@ -46,6 +90,29 @@
       modalText.value = "Invalid username or password";
       return;
     }
+
+    const res = await fetch("https://wildlyle.dev:8020/signup", {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Csrf-Token": getCsrfTokenFromMemory()!,
+      },
+      body: JSON.stringify({
+        email: username.value,
+        password: password.value,
+        userKey: localStorage.getItem("userKey"),
+      }),
+    });
+
+    if (!res.ok) {
+      modalText.value = "Something went wrong, try again in a few seconds";
+      modalOpen.value = true;
+      return;
+    }
+    const json = await res.json();
+
+    login();
   };
 
   const login = async () => {
@@ -60,7 +127,7 @@
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        // "X-Csrf-Token": csrfToken!,
+        "X-Csrf-Token": getCsrfTokenFromMemory()!,
       },
       body: JSON.stringify({
         email: username.value,
@@ -81,4 +148,33 @@
   };
 </script>
 
-<style></style>
+<style>
+  .btn-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .signup-link {
+    color: rgb(0, 190, 0);
+  }
+
+  .text-span {
+    display: inline-block;
+  }
+
+  .signup-link:hover {
+    cursor: pointer;
+  }
+
+  .signup-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .title {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+</style>

@@ -32,11 +32,8 @@
   const isLoading = ref(true);
 
   onMounted(async () => {
-    await new Promise((resolve) =>
-      setTimeout(async () => resolve(await useAuth()))
-    );
+    await new Promise(async (resolve) => resolve(await useAuth()));
     isLoading.value = false;
-    await useAuth();
     fetchCsrfCookie();
     updateTheme();
     watchThemeChange();
