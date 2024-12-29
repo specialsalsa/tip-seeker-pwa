@@ -262,8 +262,6 @@ export const getUserKey = () => {
   }
 };
 
-let csrfToken: string | null = null;
-
 export async function fetchCsrfCookie() {
   try {
     const response = await fetch("https://wildlyle.dev:8020/csrf-token", {
@@ -276,7 +274,8 @@ export async function fetchCsrfCookie() {
     }
 
     const json = await response.json();
-    csrfToken = json.csrfToken;
+    let csrfToken = json.csrfToken;
+    localStorage.setItem("csrfToken", csrfToken);
   } catch (error) {
     console.error("Error fetching CSRF cookie:", error);
     throw error;
@@ -289,7 +288,7 @@ export function getCsrfTokenFromCookie() {
 }
 
 export function getCsrfTokenFromMemory(): string | null {
-  const token = csrfToken;
+  const token = localStorage.getItem("csrfToken");
   return token;
 }
 
