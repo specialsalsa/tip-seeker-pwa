@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+  import { useAuth } from "./composables/useAuth";
   import { useThemeSwitcher } from "./composables/useThemeSwitcher";
   import { useUserStore } from "./store/store";
   import { fetchCsrfCookie } from "./util/util";

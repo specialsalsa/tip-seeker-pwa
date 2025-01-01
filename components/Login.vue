@@ -88,6 +88,7 @@
     }
     if (!username || !password) {
       modalText.value = "Invalid username or password";
+      modalOpen.value = true;
       return;
     }
 
@@ -145,6 +146,8 @@
 
     const json = await res.json();
     localStorage.setItem("token", json.token);
+    localStorage.setItem("userKey", json.userKey);
+    store.userKey = json.userKey;
   };
 </script>
 
