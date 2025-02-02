@@ -102,7 +102,7 @@
       body: JSON.stringify({
         email: username.value,
         password: password.value,
-        userKey: localStorage.getItem("userKey"),
+        userKey: store.userKey,
       }),
     });
 
