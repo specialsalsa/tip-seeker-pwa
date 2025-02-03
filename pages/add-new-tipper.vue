@@ -67,7 +67,7 @@
 
   const handleSubmit = () => {
     useSubmitRating(
-      address,
+      address.value,
       city.value,
       state.value,
       rating.value,

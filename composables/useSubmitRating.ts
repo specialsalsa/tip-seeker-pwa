@@ -2,7 +2,7 @@ import { useUserStore } from "~/store/store";
 import { getStateAbbreviation } from "~/util/util";
 
 export const useSubmitRating = async (
-  address: Ref<string>,
+  address: string,
   city: string,
   state: string,
   rating: number,
