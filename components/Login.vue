@@ -65,6 +65,7 @@
 
 <script lang="ts" setup>
   import { useUserStore } from "~/store/store";
+  import { getUserKey } from "~/util/util";
 
   const email = ref("");
   const password = ref("");
@@ -76,6 +77,8 @@
 
   onMounted(() => {
     store.loadingTokenAuth = false;
+    const userKey = getUserKey();
+    store.setUserKey(userKey);
   });
 
   const signUp = async () => {

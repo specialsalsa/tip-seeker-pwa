@@ -210,24 +210,18 @@ export const handleStarRating = (rating: number, low: number, high: number) => {
 };
 
 function replaceLastStateAbbreviation(address: string) {
-  // List of state abbreviations
-
-  // Reverse the string to handle the last occurrence
   const reversedAddress = address.split("").reverse().join("");
 
-  // Reverse the states keys to match against reversed address
   const reversedStates = Object.keys(states).reduce((acc: any, key) => {
     acc[key.split("").reverse().join("")] = states[key];
     return acc;
   }, {});
 
-  // Regex to match the first occurrence in the reversed string
   const stateRegex = new RegExp(
     `\\b(${Object.keys(reversedStates).join("|")})(?=\\b|\\s|,|$)`,
     "i"
   );
 
-  // Replace the first occurrence in the reversed string (which is the last in the original)
   const replacedReversedAddress = reversedAddress.replace(
     stateRegex,
     (match) => {
@@ -235,31 +229,28 @@ function replaceLastStateAbbreviation(address: string) {
     }
   );
 
-  // Reverse the string back to its original order
   return replacedReversedAddress.split("").reverse().join("");
 }
 
-export const setUserKey = () => {
+export const setUserKey = (): string => {
+  const userKey = nanoid();
   try {
-    localStorage.setItem("user_key", nanoid());
+    localStorage.setItem("user_key", userKey);
   } catch (err) {
     console.log("Saving error: ", err);
   }
+  return userKey;
 };
 
-export const getUserKey = () => {
-  try {
-    const userKey: string | undefined | null = localStorage.getItem("user_key");
-    if (userKey !== null) {
-      console.log("Key already stored");
-    } else {
-      setUserKey();
-    }
+export const getUserKey = (): string => {
+  let userKey: string | undefined | null = localStorage.getItem("user_key");
 
-    return userKey;
-  } catch (err) {
-    console.log("Fetching error: ", err);
+  if (userKey !== null) {
+    console.log("Key already stored");
+  } else {
+    userKey = setUserKey();
   }
+  return userKey;
 };
 
 export function capitalizeFirstLetter(words: string): string {
