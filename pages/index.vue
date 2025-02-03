@@ -35,11 +35,7 @@
 </template>
 
 <script setup lang="ts">
-  import {
-    fetchCsrfCookie,
-    getCsrfTokenFromMemory,
-    getUserKey,
-  } from "~/util/util";
+  import { getUserKey } from "~/util/util";
   import { debounce } from "lodash";
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
@@ -52,7 +48,6 @@
     if (userKey) {
       store.setUserKey(userKey);
     }
-    if (!getCsrfTokenFromMemory()) fetchCsrfCookie();
   });
 
   const store = useUserStore();

@@ -32,14 +32,12 @@
 
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
-  import { getCsrfTokenFromMemory } from "~/util/util";
 
   const user = useUserStore();
   const rating = ref(0);
   const rateLimited = ref(false);
   const modalOpen = ref(false);
   const timeRemaining = ref(0);
-  const csrfToken = getCsrfTokenFromMemory();
 
   const handleStarRating = (rating: number, target: number): string => {
     if (rating < target) {
@@ -59,7 +57,6 @@
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          "X-Csrf-Token": csrfToken!,
         },
       }
     );

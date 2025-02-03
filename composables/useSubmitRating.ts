@@ -1,5 +1,5 @@
 import { useUserStore } from "~/store/store";
-import { getCsrfTokenFromMemory, getStateAbbreviation } from "~/util/util";
+import { getStateAbbreviation } from "~/util/util";
 
 export const useSubmitRating = async (
   address: Ref<string>,
@@ -12,7 +12,6 @@ export const useSubmitRating = async (
   timeRemaining: number
 ): Promise<string | void> => {
   const user = useUserStore();
-  const csrfToken = getCsrfTokenFromMemory();
   if (!address || !city || !state || !rating) {
     return "Please fill out all fields before submitting";
   }
@@ -49,7 +48,6 @@ export const useSubmitRating = async (
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          "X-Csrf-Token": csrfToken!,
         },
       }
     );

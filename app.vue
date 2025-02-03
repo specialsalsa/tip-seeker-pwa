@@ -26,7 +26,6 @@
   import { useAuth } from "./composables/useAuth";
   import { useThemeSwitcher } from "./composables/useThemeSwitcher";
   import { useUserStore } from "./store/store";
-  import { fetchCsrfCookie } from "./util/util";
   const { updateTheme, watchThemeChange } = useThemeSwitcher();
   const store = useUserStore();
 
@@ -35,7 +34,6 @@
   onMounted(async () => {
     await new Promise(async (resolve) => resolve(await useAuth()));
     isLoading.value = false;
-    fetchCsrfCookie();
     updateTheme();
     watchThemeChange();
   });

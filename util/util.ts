@@ -262,35 +262,6 @@ export const getUserKey = () => {
   }
 };
 
-export async function fetchCsrfCookie() {
-  try {
-    const response = await fetch("https://wildlyle.dev:8020/csrf-token", {
-      method: "GET",
-      credentials: "include",
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch CSRF token: ${response.statusText}`);
-    }
-
-    const json = await response.json();
-    localStorage.setItem("csrfToken", json.csrfToken);
-  } catch (error) {
-    console.error("Error fetching CSRF cookie:", error);
-    throw error;
-  }
-}
-
-export function getCsrfTokenFromCookie() {
-  const csrfCookie = document.cookie.slice(document.cookie.indexOf("="))[1];
-  return csrfCookie ? csrfCookie : "";
-}
-
-export function getCsrfTokenFromMemory(): string | null {
-  const token = localStorage.getItem("csrfToken");
-  return token;
-}
-
 export function capitalizeFirstLetter(words: string): string {
   if (!words) return "";
   words = replaceLastStateAbbreviation(words);

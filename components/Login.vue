@@ -6,7 +6,7 @@
       <v-form @submit.prevent="login()" class="form">
         <v-text-field
           class="text-field"
-          v-model="username"
+          v-model="email"
           label="Email"
           type="email"
         ></v-text-field>
@@ -34,7 +34,7 @@
       <v-form @submit.prevent="signUp()" class="form">
         <v-text-field
           class="text-field"
-          v-model="username"
+          v-model="email"
           label="Email"
           type="email"
         ></v-text-field>
@@ -65,15 +65,13 @@
 
 <script lang="ts" setup>
   import { useUserStore } from "~/store/store";
-  import { getCsrfTokenFromMemory } from "~/util/util";
 
-  const username = ref("");
+  const email = ref("");
   const password = ref("");
   const confirmPassword = ref("");
   const modalOpen = ref(false);
   const modalText = ref("");
   const onSignup = ref(false);
-  let csrfToken = getCsrfTokenFromMemory();
   const store = useUserStore();
 
   onMounted(() => {
@@ -86,8 +84,8 @@
       modalOpen.value = true;
       return;
     }
-    if (!username || !password) {
-      modalText.value = "Invalid username or password";
+    if (!email || !password) {
+      modalText.value = "Invalid email or password";
       modalOpen.value = true;
       return;
     }
@@ -97,10 +95,9 @@
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "X-Csrf-Token": getCsrfTokenFromMemory()!,
       },
       body: JSON.stringify({
-        email: username.value,
+        email: email.value,
         password: password.value,
         userKey: store.userKey,
       }),
@@ -117,8 +114,8 @@
   };
 
   const login = async () => {
-    if (!username || !password) {
-      modalText.value = "Please fill out username and password";
+    if (!email || !password) {
+      modalText.value = "Please fill out email and password";
       modalOpen.value = true;
       return;
     }
@@ -128,10 +125,9 @@
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "X-Csrf-Token": getCsrfTokenFromMemory()!,
       },
       body: JSON.stringify({
-        email: username.value,
+        email: email.value,
         password: password.value,
       }),
     });

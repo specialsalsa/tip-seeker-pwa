@@ -1,14 +1,12 @@
 import { useUserStore } from "~/store/store";
 import type { TipperResponse } from "~/types";
 import { capitalizeFirstLetter } from "~/util/util";
-import { getCsrfTokenFromMemory } from "~/util/util";
 
 export const useGetTippers = async (
   data: string,
   resCount: number
 ): Promise<TipperResponse[]> => {
   const store = useUserStore();
-  const csrfToken = getCsrfTokenFromMemory();
 
   const userKey = store.userKey;
   try {
@@ -17,7 +15,6 @@ export const useGetTippers = async (
       {
         headers: {
           "Content-Type": "application/json",
-          "X-Csrf-Token": csrfToken!,
         },
       }
     );

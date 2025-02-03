@@ -14,12 +14,7 @@
 <script setup lang="ts">
   import { useUserStore } from "~/store/store";
   import type { TipperResponse } from "~/types";
-  import {
-    capitalizeFirstLetter,
-    fetchCsrfCookie,
-    getCsrfTokenFromMemory,
-  } from "~/util/util";
-  const csrfToken = getCsrfTokenFromMemory();
+  import { capitalizeFirstLetter } from "~/util/util";
   const store = useUserStore();
   const userKey = store.userKey;
   let page = 1;
@@ -32,7 +27,6 @@
         {
           headers: {
             "Content-Type": "application/json",
-            "X-Csrf-Token": csrfToken!,
           },
         }
       );
@@ -48,7 +42,6 @@
   };
 
   onMounted(async () => {
-    if (!getCsrfTokenFromMemory()) await fetchCsrfCookie();
     if (userKey) {
       tipperArray.value = (await getUserOrders(userKey))
         .map((tipper) => {
