@@ -77,8 +77,6 @@
 
   onMounted(() => {
     store.loadingTokenAuth = false;
-    const userKey = getUserKey();
-    store.setUserKey(userKey);
   });
 
   const signUp = async () => {
@@ -145,7 +143,7 @@
 
     const json = await res.json();
     localStorage.setItem("token", json.token);
-    localStorage.setItem("userKey", json.userKey);
+    localStorage.setItem("user_key", json.userKey);
     store.userKey = json.userKey;
   };
 </script>
