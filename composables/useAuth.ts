@@ -17,8 +17,10 @@ export const useAuth = async () => {
   if (!res.ok) {
     store.isLoggedIn = false;
     localStorage.removeItem("token");
+    localStorage.removeItem("user_key");
     return false;
   }
+  const json = await res.json();
 
   store.isLoggedIn = true;
   store.loadingTokenAuth = false;
