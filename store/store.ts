@@ -8,7 +8,7 @@ export const useUserStore = defineStore("user", {
     notes: [],
     formData: "",
     userKey: "",
-    isLoggedIn: false,
+    token: "",
     email: "",
     loadingTokenAuth: false,
   }),
@@ -20,6 +20,9 @@ export const useUserStore = defineStore("user", {
     },
     setUserKey(key: string) {
       this.userKey = key;
+    },
+    isLoggedIn() {
+      return !!this.token;
     },
     async editNote(index: number, oldNote: string, newNote: string) {
       const res = await fetch(

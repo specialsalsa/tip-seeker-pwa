@@ -22,6 +22,6 @@ export interface StoreState {
   formData: string;
   userKey: string;
   email: string;
-  isLoggedIn: boolean;
+  token: string;
   loadingTokenAuth: boolean;
 }

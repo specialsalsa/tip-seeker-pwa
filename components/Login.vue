@@ -139,10 +139,9 @@
 
       return;
     }
-    store.isLoggedIn = true;
 
     const json = await res.json();
-    localStorage.setItem("token", json.token);
+    store.token = json.token;
     localStorage.setItem("user_key", json.userKey);
     store.setUserKey(json.userKey);
     store.email = email.value;

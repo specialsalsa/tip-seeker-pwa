@@ -13,8 +13,8 @@
         ></v-progress-circular>
       </v-overlay>
 
-      <Login v-if="!store.isLoggedIn && !isLoading" />
-      <div v-if="store.isLoggedIn">
+      <Login v-if="!store.isLoggedIn() && !isLoading" />
+      <div v-if="store.isLoggedIn()">
         <NuxtPage page-key="index" />
         <Tabs />
       </div>

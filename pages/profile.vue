@@ -21,8 +21,8 @@
 
   const logout = () => {
     store.userKey = "";
-    store.isLoggedIn = false;
-    localStorage.removeItem("userKey");
+    store.token = "";
+    localStorage.removeItem("user_key");
 
     navigateTo("/");
   };
@@ -39,6 +39,6 @@
   }
 
   .logout-button {
-    margin: 0 1rem;
+    margin: 0 auto;
   }
 </style>
