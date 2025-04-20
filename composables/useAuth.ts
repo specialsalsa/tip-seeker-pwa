@@ -3,17 +3,20 @@ import { useUserStore } from "~/store/store";
 export const useAuth = async () => {
   const store = useUserStore();
 
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  store.loadingTokenAuth = true;
   const res = await fetch("https://wildlyle.dev:8020/validateToken", {
     method: "GET",
     credentials: "include",
     headers: {
-      Authorization: "Bearer " + store.token,
+      Authorization: "Bearer " + token,
     },
   });
 
   if (!res.ok) {
     store.token = "";
-
     localStorage.removeItem("user_key");
     return false;
   }
