@@ -30,7 +30,7 @@
   <div class="container" v-else>
     <h1 class="title">Sign Up</h1>
     <v-container class="card">
-      <!-- <v-card-title>Login</v-card-title> -->
+      <v-card-title>Login</v-card-title>
       <v-form @submit.prevent="signUp()" class="form">
         <v-text-field
           class="text-field"
@@ -145,6 +145,7 @@
     localStorage.setItem("token", json.token);
     localStorage.setItem("user_key", json.userKey);
     store.setUserKey(json.userKey);
+    store.email = email.value;
   };
 </script>
 

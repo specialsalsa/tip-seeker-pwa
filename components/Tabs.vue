@@ -14,6 +14,10 @@
       <v-icon>mdi-book-open-variant</v-icon>
       <span>Tip Log</span>
     </v-btn>
+    <v-btn @click="navigateTo('/profile')">
+      <v-icon>mdi-account</v-icon>
+      <span>Profile</span>
+    </v-btn>
   </v-bottom-navigation>
 </template>
 

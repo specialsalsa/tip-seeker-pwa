@@ -23,6 +23,7 @@ export const useAuth = async () => {
   const json = await res.json();
 
   store.isLoggedIn = true;
+  store.email = json.token.email;
   store.loadingTokenAuth = false;
   return true;
 };

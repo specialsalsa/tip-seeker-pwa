@@ -9,6 +9,7 @@ export const useUserStore = defineStore("user", {
     formData: "",
     userKey: "",
     isLoggedIn: false,
+    email: "",
     loadingTokenAuth: false,
   }),
   actions: {
