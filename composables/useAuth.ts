@@ -18,10 +18,12 @@ export const useAuth = async () => {
   if (!res.ok) {
     store.token = "";
     localStorage.removeItem("user_key");
+    localStorage.removeItem("token");
     return false;
   }
   const json = await res.json();
   store.token = json.token;
+  localStorage.setItem("token", json.token);
   store.email = json.token.email;
   store.loadingTokenAuth = false;
   return true;
