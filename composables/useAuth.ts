@@ -4,7 +4,7 @@ export const useAuth = async () => {
   const store = useUserStore();
 
   const token = localStorage.getItem("token");
-  if (!token) return;
+  if (!token) return false;
 
   store.loadingTokenAuth = true;
   const res = await fetch("https://wildlyle.dev:8020/validateToken", {
@@ -21,9 +21,8 @@ export const useAuth = async () => {
     localStorage.removeItem("token");
     return false;
   }
+  store.token = token;
   const json = await res.json();
-  store.token = json.token;
-  localStorage.setItem("token", json.token);
   store.email = json.token.email;
   store.loadingTokenAuth = false;
   return true;

@@ -21,9 +21,7 @@ export const useUserStore = defineStore("user", {
     setUserKey(key: string) {
       this.userKey = key;
     },
-    isLoggedIn() {
-      return !!this.token;
-    },
+
     async editNote(index: number, oldNote: string, newNote: string) {
       const res = await fetch(
         `https://wildlyle.dev:8020/editNote?address=${this.address.toLowerCase()}&oldNote=${oldNote}&newNote=${newNote}`,

@@ -3,7 +3,7 @@
   <div>
     <v-app>
       <v-overlay
-        :model-value="store.loadingTokenAuth"
+        v-model="store.loadingTokenAuth"
         class="align-center justify-center"
       >
         <v-progress-circular
@@ -13,8 +13,8 @@
         ></v-progress-circular>
       </v-overlay>
 
-      <Login v-if="!store.isLoggedIn() && !isLoading" />
-      <div v-if="store.isLoggedIn()">
+      <Login v-if="!store.token && !isLoading" />
+      <div v-if="store.token">
         <NuxtPage page-key="index" />
         <Tabs />
       </div>

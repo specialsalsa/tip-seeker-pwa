@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll-container" v-if="store.isLoggedIn()">
+  <div class="scroll-container" v-if="store.token">
     <h1 class="title">Tipper Lookup</h1>
 
     <div class="text-field-container">

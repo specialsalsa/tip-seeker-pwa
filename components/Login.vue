@@ -121,6 +121,8 @@
       return;
     }
 
+    store.loadingTokenAuth = true;
+
     const res = await fetch("https://wildlyle.dev:8020/login", {
       method: "POST",
       credentials: "include",
@@ -143,8 +145,10 @@
     const json = await res.json();
     store.token = json.token;
     localStorage.setItem("user_key", json.userKey);
+    localStorage.setItem("token", json.token);
     store.setUserKey(json.userKey);
     store.email = email.value;
+    store.loadingTokenAuth = false;
   };
 </script>
 
