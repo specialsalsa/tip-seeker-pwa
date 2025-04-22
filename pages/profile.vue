@@ -23,6 +23,7 @@
     store.userKey = "";
     store.token = "";
     localStorage.removeItem("user_key");
+    localStorage.removeItem("token");
 
     navigateTo("/");
   };
