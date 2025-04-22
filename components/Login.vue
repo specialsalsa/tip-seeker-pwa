@@ -1,6 +1,14 @@
 <template>
   <div class="container" v-if="!onSignup">
     <h1 class="title">Login</h1>
+    <v-dialog v-model="modalOpen" class="dialog">
+      <v-card class="card-modal" rounded="lg" density="compact">
+        <v-card-text>{{ modalText }} </v-card-text>
+        <v-card-actions>
+          <v-btn @click="() => (modalOpen = false)" size="default">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-container class="card">
       <!-- <v-card-title>Login</v-card-title> -->
       <v-form @submit.prevent="login()" class="form">
@@ -136,6 +144,7 @@
     });
 
     if (!res.ok) {
+      store.loadingTokenAuth = false;
       modalText.value = "Invalid username or password";
       modalOpen.value = true;
 
