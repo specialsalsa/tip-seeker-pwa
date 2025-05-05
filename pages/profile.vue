@@ -3,7 +3,7 @@
     <h1 class="title">Profile</h1>
     <v-card class="card">
       <v-card-text> Username: {{ store.email }} </v-card-text>
-      <!-- <v-card-text>Ratings: 100</v-card-text> -->
+      <v-card-text>Ratings: {{ totalRatings }}</v-card-text>
     </v-card>
     <v-btn class="logout-button" @click="logout">Logout</v-btn>
   </div>
@@ -13,11 +13,19 @@
   import { useUserStore } from "~/store/store";
 
   const store = useUserStore();
+  const totalRatings = ref("");
 
-  try {
-  } catch (err) {
-    console.log(err);
-  }
+  onMounted(async () => {
+    try {
+      const res = await fetch(
+        `https://wildlyle.dev:8020/getTotalRatings?userKey=${store.userKey}`
+      );
+      const json = await res.json();
+      totalRatings.value = json.totalRatings;
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
   const logout = () => {
     store.userKey = "";
