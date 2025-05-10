@@ -38,5 +38,7 @@
     isLoading.value = false;
     updateTheme();
     watchThemeChange();
+    useRefreshProfileData();
   });
+  watch(() => store.tipRatings, useRefreshProfileData, { deep: true });
 </script>

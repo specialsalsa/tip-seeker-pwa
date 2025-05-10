@@ -1,4 +1,5 @@
 import { defineStore } from "#build/imports";
+import { useRefreshProfileData } from "#build/imports";
 import type { StoreState } from "~/types";
 
 export const useUserStore = defineStore("user", {
@@ -14,6 +15,7 @@ export const useUserStore = defineStore("user", {
     email: "",
     loadingTokenAuth: false,
   }),
+
   actions: {
     addCurrentUser(address: string, tipRatings: string[], notes: string[]) {
       this.address = address;
