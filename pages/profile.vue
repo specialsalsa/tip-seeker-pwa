@@ -6,7 +6,7 @@
       <v-card-text
         >Total Ratings: {{ store.totalRatings }}<br />
         Average Rating:
-        {{ parseFloat(store.averageRating).toFixed(2) }}</v-card-text
+        {{ averageRatingRounded }}</v-card-text
       >
     </v-card>
     <v-btn class="logout-button" @click="logout">Logout</v-btn>
@@ -17,6 +17,8 @@
   import { useUserStore } from "~/store/store";
 
   const store = useUserStore();
+  const averageRating = parseFloat(store.averageRating);
+  const averageRatingRounded = averageRating ? averageRating.toFixed(2) : "-";
 
   const logout = () => {
     store.userKey = "";
