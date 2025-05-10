@@ -2,26 +2,43 @@
   <div class="container">
     <h1 class="title">Profile</h1>
     <v-card class="card">
-      <v-card-text> Username: {{ store.email }} </v-card-text>
-      <v-card-text>Ratings: {{ totalRatings }}</v-card-text>
+      <v-card-title> {{ store.email }} </v-card-title>
+      <v-card-text
+        >Total Ratings: {{ store.totalRatings }}<br />
+        Average Rating:
+        {{ store.averageRating }}</v-card-text
+      >
     </v-card>
     <v-btn class="logout-button" @click="logout">Logout</v-btn>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
   import { useUserStore } from "~/store/store";
 
   const store = useUserStore();
-  const totalRatings = ref("");
 
   onMounted(async () => {
     try {
-      const res = await fetch(
-        `https://wildlyle.dev:8020/getTotalRatings?userKey=${store.userKey}`
-      );
-      const json = await res.json();
-      totalRatings.value = json.totalRatings;
+      if (!store.totalRatings) {
+        const res = await fetch(
+          `https://wildlyle.dev:8020/getTotalRatings?userKey=${store.userKey}`
+        );
+        const json = await res.json();
+        store.totalRatings = json.totalRatings;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      if (!store.averageRating) {
+        const res = await fetch(
+          `https://wildlyle.dev:8020/getRatingAverage?userKey=${store.userKey}`
+        );
+        const json = await res.json();
+        store.averageRating = json.averageRating;
+      }
     } catch (err) {
       console.log(err);
     }

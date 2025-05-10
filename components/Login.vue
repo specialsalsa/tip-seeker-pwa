@@ -73,7 +73,6 @@
 
 <script lang="ts" setup>
   import { useUserStore } from "~/store/store";
-  import { getUserKey } from "~/util/util";
 
   const email = ref("");
   const password = ref("");

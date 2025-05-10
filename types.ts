@@ -23,5 +23,7 @@ export interface StoreState {
   userKey: string;
   email: string;
   token: string;
+  totalRatings: string;
+  averageRating: string;
   loadingTokenAuth: boolean;
 }
