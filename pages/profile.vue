@@ -18,7 +18,9 @@
 
   const store = useUserStore();
   const averageRating = parseFloat(store.averageRating);
-  const averageRatingRounded = averageRating ? averageRating.toFixed(2) : "-";
+  const averageRatingRounded = averageRating
+    ? (Math.round(averageRating * 100) / 100).toFixed(2)
+    : "-";
 
   const logout = () => {
     store.userKey = "";
