@@ -60,6 +60,7 @@
   .title {
     font-size: 1.1rem;
     text-wrap: auto;
+    justify-content: flex-start;
   }
 
   .star-container {
