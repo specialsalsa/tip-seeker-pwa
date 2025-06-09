@@ -11,7 +11,7 @@
     <TipHistory />
     <v-container class="button-container">
       <v-btn
-        color="grey-darken-3"
+        color="primary"
         prepend-icon="mdi-map-marker"
         :href="mapsLink"
         class="maps-button"

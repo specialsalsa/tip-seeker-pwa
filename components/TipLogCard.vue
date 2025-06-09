@@ -5,7 +5,13 @@
       params: { id: title },
     }"
   >
-    <v-card class="card" elevation="3" rounded="lg" @click="setTipperData">
+    <v-card
+      class="card"
+      variant="text"
+      color="primary"
+      elevation="2"
+      @click="setTipperData"
+    >
       <v-card-title class="title" v-text="title"></v-card-title>
       <v-card-subtitle> Average: {{ average }} </v-card-subtitle>
       <div class="star-container">
@@ -74,6 +80,12 @@
 
   .top-spacer {
     margin-top: 1rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .card {
+      background-color: #2b2a2a;
+    }
   }
 
   .bottom-spacer {

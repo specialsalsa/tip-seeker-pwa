@@ -25,7 +25,7 @@ export const useSubmitRating = async (
     note,
   })
     .filter(([key, value]) => value.toString().length > 100)
-    .map((field) => " " + field[0]);
+    .map((field) => " " + field[0] + ",");
 
   if (invalidFields.length) {
     return `${invalidFields} reached maximum length, try again with shorter input`;

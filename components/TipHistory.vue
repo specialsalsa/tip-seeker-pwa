@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="2" rounded="lg" class="card">
+  <v-card elevation="3" color="primary" variant="text" class="card">
     <v-card-title>Tip History</v-card-title>
     <div class="history-item-container" v-for="tip in state.tipRatings">
       <v-icon icon="mdi-star"></v-icon>
@@ -22,5 +22,11 @@
     display: flex;
     justify-content: center;
     padding-bottom: 1rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .card {
+      background-color: #2b2a2a;
+    }
   }
 </style>

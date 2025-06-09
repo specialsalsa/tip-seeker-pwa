@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="2" class="card" rounded="lg">
+  <v-card elevation="2" variant="text" color="primary" class="card">
     <v-card-title>Notes</v-card-title>
     <div class="notes-container" v-for="(note, index) in state.notes">
       <div class="note-edit-container" v-if="noteIndex === index">
@@ -87,8 +87,6 @@
     noteIndex.value = null;
     noteText.value = "";
     newNoteActive.value = false;
-
-    //todo: submit to database
   };
 
   const submitNoteAdd = (): void => {
@@ -97,8 +95,6 @@
     noteIndex.value = null;
     noteText.value = "";
     newNoteActive.value = false;
-
-    //todo: submit to database
   };
 
   const deleteNote = (index: number): void => {
@@ -115,12 +111,6 @@
     margin: 0;
     max-width: 50vw;
     margin-left: 20vw;
-  }
-
-  @media (min-width: 1280px) {
-    .text-field {
-      margin-left: 10vw;
-    }
   }
 
   .note {
@@ -165,6 +155,17 @@
   @media (min-width: 1280px) {
     .note-edit-container {
       max-width: 30vw;
+    }
+  }
+  @media (min-width: 1280px) {
+    .text-field {
+      margin-left: 10vw;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .card {
+      background-color: #2b2a2a;
     }
   }
 </style>

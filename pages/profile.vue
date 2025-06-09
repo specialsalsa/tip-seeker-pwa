@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">Profile</h1>
-    <v-card class="card" elevation="3">
+    <v-card class="card" variant="text" color="primary" elevation="3">
       <v-card-title> {{ store.email }} </v-card-title>
       <v-card-text
         >Total Ratings: {{ store.totalRatings }}<br />

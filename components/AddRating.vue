@@ -1,7 +1,7 @@
 <template>
   <v-overlay v-model="modalOpen"></v-overlay>
   <v-dialog v-model="modalOpen" class="dialog">
-    <v-card class="card-modal" rounded="lg" density="compact">
+    <v-card class="card-modal" density="compact">
       <v-card-text
         >Please wait {{ Math.ceil(timeRemaining) }} minute{{
           timeRemaining < 1 ? "" : "s"
@@ -13,7 +13,7 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <v-card class="card" rounded="lg" elevation="2">
+  <v-card class="card" variant="text" color="primary" elevation="2">
     <v-card-title>Add Rating</v-card-title>
     <div class="star-container">
       <v-icon
@@ -23,9 +23,7 @@
       ></v-icon>
     </div>
     <div class="rating-button-container">
-      <v-btn color="grey-darken-3" @click="submitRating(rating)"
-        >Submit Rating</v-btn
-      >
+      <v-btn color="primary" @click="submitRating(rating)">Submit Rating</v-btn>
     </div>
   </v-card>
 </template>
@@ -80,12 +78,6 @@
     margin: 0;
   }
 
-  @media (min-width: 1280px) {
-    .dialog {
-      margin: 0 30vw;
-    }
-  }
-
   .star-container {
     margin-top: 1rem;
     display: flex;
@@ -96,5 +88,17 @@
     margin-top: 1.5rem;
     display: flex;
     justify-content: center;
+  }
+
+  @media (min-width: 1280px) {
+    .dialog {
+      margin: 0 30vw;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .card {
+      background-color: #2b2a2a;
+    }
   }
 </style>
